@@ -1,0 +1,10 @@
+*~
+*.pyc
+\#*#
+.ropeproject/
+twistd.log*
+twistd.pid
+.cache/
+*.egg-info/
+*.log
+.~lock.*

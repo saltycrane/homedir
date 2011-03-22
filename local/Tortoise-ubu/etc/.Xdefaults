@@ -1,0 +1,13 @@
+
+! machine specific config
+! ~/local/Tortoise-ubu/etc/.Xdefaults
+
+!URxvt*font: xft:Bitstream Vera Sans Mono:size=10
+!Urxvt*boldFont: xft:Bitstream Vera Sans Mono:size=10:style=Bold
+
+Emacs*font: -bitstream-courier 10 pitch-medium-r-normal--0-0-0-0-m-0-iso8859-1
+
+!-bitstream-courier 10 pitch-medium-r-normal--0-0-0-0-m-0-adobe-standard
+!-bitstream-courier 10 pitch-medium-r-normal--0-0-0-0-m-0-ascii-0
+!-bitstream-courier 10 pitch-medium-r-normal--0-0-0-0-m-0-iso10646-1
+!-bitstream-courier 10 pitch-medium-r-normal--0-0-0-0-m-0-iso8859-1

@@ -1,0 +1,22 @@
+# ~/etc/.inputrc
+
+# doesn't seem to work in linux
+#"\C-v": paste-from-clipboard
+
+# # misc
+set bell-style visible
+# #set expand-tilde off # doesnt do what i thought
+tab: menu-complete
+
+# # movement keys
+"\C-h": backward-char
+"\C-l": forward-char
+# #"\C-j": next-history
+# #"\C-k": previous-history
+# "\C-i": kill-line # this breaks tab completion
+#"\M-h":
+#"\M-l":
+"\M-h": backward-word
+"\M-l": forward-word
+
+#"\e[[A":"ps -a --forest"

@@ -1,0 +1,58 @@
+echo "sourcing ~/etc/.environvars..."
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# ignore some common commands when searching history
+export HISTIGNORE="dir:la:exit:jobs"
+
+# make sorting case senstive (e.g. in the "ls" command)
+export LC_COLLATE=C
+
+export HOSTNAME # i dont know why this isnt exported
+export HGUSER="${USER}@${HOSTNAME}"
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
+export ALTERNATE_EDITOR=emacs
+export HISTSIZE=5000
+export HISTFILESIZE=20000
+export GREP_OPTIONS='--binary-files=without-match --color'
+export BCAT_BROWSER='firefox'
+
+# django
+export DJANGO_SETTINGS_MODULE=settings
+
+#virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# for EC2 command-line tools
+# export JAVA_HOME=/usr
+# export EC2_HOME=$HOME/lib/ec2-api-tools
+
+if [ -f /usr/bin/less ]; then
+    export PAGER=less
+fi
+
+if [ ! $PATHMODIFIED ] ; then
+    echo "Adding /var/lib/gems/1.8/bin to PATH"
+    if [ -d /var/lib/gems/1.8/bin ] ; then
+        PATH=/var/lib/gems/1.8/bin:"${PATH}"
+    fi
+
+    echo "Adding ~/bin to PATH"
+    if [ -d ~/bin ] ; then
+        PATH=~/bin:"${PATH}"
+    fi
+
+    echo "Adding ~/local/$HOSTNAME/bin to PATH"
+    if [ -d ~/local/${HOSTNAME}/bin ] ; then
+        PATH=~/local/${HOSTNAME}/bin:"${PATH}"
+    fi
+
+    export PATH
+    export PATHMODIFIED=1
+fi

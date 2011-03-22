@@ -1,0 +1,11 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[user]
+	name = Eliot
+	email = eliot@tapir
+[core]
+	excludesfile = "~/etc/.gitignore-global"
+[alias]
+	llog = log --date=local

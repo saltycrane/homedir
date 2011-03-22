@@ -1,0 +1,25 @@
+[extensions]
+; The win32text extension is available and installed by default.  It
+; provides built-in Python hooks to perform line ending conversions.
+; This is normally much faster than running an external program.
+; See [encode] and [decode] sections below
+;;hgext.hgk =
+;;hgext.qct =
+;;hgext.hgconfig=
+;hgext.mq = 
+;hgext.forest = 
+;hgext.keyword = 
+;hgext.graphlog = 
+;hgext.record = 
+;hgext.transplant = 
+;hgext.purge = 
+hgext.extdiff = 
+hgext.fetch = 
+hgext.color =
+hgext.convert =
+
+[extdiff]
+cmd.kdiff = /usr/bin/kdiff3
+
+[ui]
+ignore = /home/eliot/.hgignore-global

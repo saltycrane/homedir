@@ -1,0 +1,11 @@
+syntax: regexp
+.*~$
+.*\.pyc$
+.*\.bak$
+.*\.orig$
+.*\.old$
+^\#.*\#$
+(^|/)Archive/.*
+^a\.out$
+(^|/)\.~lock\..+#$
+\.ropeproject/.*

@@ -1,0 +1,1 @@
+../lib/wmii/bin/wmii.sh

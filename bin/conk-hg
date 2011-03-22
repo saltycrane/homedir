@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MOZILLA_NO_JEMALLOC=0
+/home/eliot/lib/conkeror-hg/xulrunner-stub-1.9.0.3 $@
