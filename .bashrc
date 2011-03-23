@@ -15,10 +15,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# Comment in the above and uncomment this below for a color prompt
-export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\e[33m\e[1m\]\w\[\e[m\e[0m\]
-$ "
-
 # If this is an xterm set the title to user@host:dir
 # case "$TERM" in
 # xterm*|rxvt*|screen)
@@ -28,6 +24,7 @@ $ "
 #     ;;
 # esac
 
+source $HOME/etc/.bash_prompt
 source $HOME/etc/.environvars
 source $HOME/etc/.bash_aliases
 source $HOME/prv/.bashrc
