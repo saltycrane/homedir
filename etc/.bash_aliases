@@ -1,4 +1,4 @@
-echo "sourcing ~/etc/.bash_aliases..."
+echo "sourcing ~/etc/.bash_aliases..." 1>&2
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then

@@ -96,15 +96,16 @@ def print2stderr(string):
 ###############################################################################
 def append_filelist(startpath, filelist):
     """ Walks the path, startpath, and appends files to the list, filelist """
-    os.chdir(startpath)
-    for (path, dirs, files) in os.walk(startpath):
-        path += "/"
-        path = path.lstrip(startpath+"/")
-        for filename in files:
-            if not re.search(r"(^\.bashrc|(^|/)\#.*\#|~|\.bak|\.orig)$", filename):
-                filepath = "%s%s" % (path, filename)
-                if filepath not in filelist:
-                    filelist.append(filepath)
+    if os.path.exists(startpath):
+        os.chdir(startpath)
+        for (path, dirs, files) in os.walk(startpath):
+            path += "/"
+            path = path.lstrip(startpath+"/")
+            for filename in files:
+                if not re.search(r"(^\.bashrc|(^|/)\#.*\#|~|\.bak|\.orig)$", filename):
+                    filepath = "%s%s" % (path, filename)
+                    if filepath not in filelist:
+                        filelist.append(filepath)
     return filelist
 
 ###############################################################################

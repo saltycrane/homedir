@@ -1,4 +1,4 @@
-echo "sourcing ~/etc/.environvars..."
+echo "sourcing ~/etc/.environvars..." 1>&2
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups

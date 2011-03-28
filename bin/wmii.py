@@ -1,1 +1,1 @@
-../src/python/wmii/wmii.py
+../src/github/wmii-scripts/wmii.py
