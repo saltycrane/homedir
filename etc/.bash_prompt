@@ -5,7 +5,8 @@ echo "sourcing ~/etc/.bash_prompt..." 1>&2
 # -------------------------------------------------------------------------
 GIT_PROMPT_PREFIX="("
 GIT_PROMPT_SUFFIX=")"
-GIT_PROMPT_DIRTY="!"
+GIT_PROMPT_DIRTY="*"
+GIT_PROMPT_UNTRACKED="!"
 GIT_PROMPT_CLEAN=""
 
 # get the name of the branch we are on
@@ -15,10 +16,12 @@ function git_prompt_info() {
 }
  
 parse_git_dirty () {
-    if [[ $((git status 2> /dev/null) | tail -n1) != "nothing to commit (working directory clean)" ]]; then
-        echo "$GIT_PROMPT_DIRTY"
-    else
+    if [[ $((git status 2> /dev/null) | tail -n1) == "nothing to commit (working directory clean)" ]]; then
         echo "$GIT_PROMPT_CLEAN"
+    elif [[ $((git status -uno 2> /dev/null) | tail -n1) == "nothing to commit (use -u to show untracked files)" ]]; then
+        echo "$GIT_PROMPT_UNTRACKED"
+    else
+        echo "$GIT_PROMPT_DIRTY"
     fi
 }
 
