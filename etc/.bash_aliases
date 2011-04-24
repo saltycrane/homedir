@@ -28,6 +28,7 @@ alias go='gnome-open'
 #alias dotme="source ~/.bashrc"
 alias diff="colordiff"
 alias svndiff="svn diff | colordiff"
+alias whatismyip='curl ifconfig.me'
 
 # directory aliases
 alias inc='cd ~/incoming'
