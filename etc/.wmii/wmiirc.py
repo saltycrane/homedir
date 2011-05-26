@@ -291,6 +291,9 @@ keys.bind('main', {
     # move and keep width (eliot)
     '%(mod)s-Shift-Control-l': lambda k: call('wmii.py', 'makw', 'right'),
     '%(mod)s-Shift-Control-h': lambda k: call('wmii.py', 'makw', 'left'),
+
+    # slock (eliot)
+    '%(mod)s-u': lambda k: call('slock'),
 })
 
 def bind_num(i):
