@@ -38,7 +38,8 @@ def main():
 
     cmd = " ".join([
             "find .",
-            "-iname %s" % glob,
+            "-path %s" % glob,
+            "-type f",
             "! -regex '.*~$'",
             "! -regex '.*\.orig$'",
             "! -regex '.*\.bak$'",
