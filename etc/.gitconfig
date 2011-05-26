@@ -7,5 +7,26 @@
 	email = eliot@tapir
 [core]
 	excludesfile = "~/etc/.gitignore-global"
+[diff]
+    # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
+    renames = copy
 [alias]
 	llog = log --date=local
+
+    # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
+    # show full history in gitk (including "deleted" branches and stashes)
+    history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
+    # show list of contributors in descending order by number of commits
+    rank = shortlog -sn --no-merges
+    # given a string for an author, try to figure out full name and email:
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    # given any git object, try to show it briefly
+    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+    # Search for a given string in all patches and print commit messages
+    # example: search for any commit that adds or removes string "foobar"
+    #     git searchcommits foobar
+    # example: search commits for string "foobar" in directory src/lib
+    #     git searchcommits foobar src/lib
+    # example: search commits for "foobar", print full diff of commit with 1 line context
+    #     git searchcommits foobar --pickaxe-all -U1 src/lib
+    searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
