@@ -44,5 +44,5 @@ LIGHT_CYAN="\[\033[1;36m\]"
 WHITE="\[\033[0;37m\]"
 RESET="\[\033[0m\]"
 
-PS1="\D{%m%d|%H:%M:%S}${CYAN}\$(git_prompt_info)${RESET}${LIGHT_GREEN}\u@\h${RESET}:${LIGHT_YELLOW}\w${RESET}
+PS1="${MAGENTA}\D{%m%d:%H:%M:%S}${RESET}|${LIGHT_GREEN}\u@\h${RESET}${CYAN}\$(git_prompt_info)${RESET}${LIGHT_YELLOW}\w${RESET}
 $ "
