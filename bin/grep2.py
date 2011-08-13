@@ -36,15 +36,10 @@ import sys
 def main():
     patt = sys.argv[1]
     filename = sys.argv[2]
-    regex = re.compile(patt, re.MULTILINE)
 
-    with open(filename) as f:
-        text = f.read()
-        matchlist = set()
-        for m in regex.finditer(text):
-            # TODO: update to accept more than one group
-            matchlist.add(m.group(1))
-
+    text = open(filename).read()
+    # TODO: update to accept more than one group
+    matchlist = set(m.group(1) for m in re.finditer(patt, text, re.MULTILINE))
     for m in sorted(matchlist):
         print m
 
