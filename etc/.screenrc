@@ -82,3 +82,6 @@ bindkey -m "^g" stuff q     # exit copy mode
 
 # use backtick for prefix key instead of Ctrl-A
 escape ``
+
+# so it won't seem like there is a delay when entering copy mode
+msgminwait 0
