@@ -42,6 +42,7 @@ def main():
         glob = "'*'"
 
     # extra grep arguments
+    # grep_args = ['--color', '-A 1']
     grep_args = ['--color']
     if options.ignore_case:
         grep_args.append('-i')
@@ -61,6 +62,9 @@ def main():
             "! -regex '.*\.bak$'",
             "! -regex '.*/#.*'",
             "! -regex '.*/\.svn/.*'",
+            "! -regex '.*/\.git/.*'",
+            "! -regex '.*/\.ropeproject/.*'",
+            "! -regex '.*\.min\.js$'",
             " ".join(find_args),
             "-exec grep",
             " ".join(grep_args),
