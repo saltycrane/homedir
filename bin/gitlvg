@@ -1,0 +1,13 @@
+#! /bin/bash
+
+if (( $# < 1 )); then
+  echo >&2 "Usage: $0 pattern [<since>..<until>]"
+  exit 1
+fi
+
+pattern=$1
+shift
+
+git log --format=%H $@ |
+  grep -v -f <(git log --format=%H "--grep=$pattern" $@) |
+  git log --pretty --no-merges --stat=120,120 --stdin --no-walk
