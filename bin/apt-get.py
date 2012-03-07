@@ -54,31 +54,45 @@ import subprocess
 import sys
 
 
-def main():
-
-    cmd = ' '.join(['/usr/bin/apt-get'] + sys.argv[1:])
-
-    # pre commit
-    sudo('cd /etc && /usr/bin/git add -A .')
-    sudo('cd /etc && /usr/bin/git status')
-    sudo('''cd /etc && /usr/bin/git commit -m 'BEFORE: "%s"' ''' % cmd)
-
-    # run actual apt-get command
-    sudo(cmd)
-
-    # update package list
-    sudo('dpkg -l > /etc/eliot-dpkg-list')
-
-    # post commit
-    sudo('cd /etc && /usr/bin/git add -A .')
-    sudo('cd /etc && /usr/bin/git status')
-    sudo('''cd /etc && /usr/bin/git commit -m 'AFTER: "%s"' ''' % cmd)
+def backtick(cmd):
+    p = subprocess.Popen(
+        ['/bin/bash', '-c', cmd], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT, close_fds=True)
+    stdouterr, unused = p.communicate()
+    return stdouterr
 
 
 def sudo(cmd):
     print 'sudo: %s' % cmd
     p = subprocess.Popen(['/usr/bin/sudo', '/bin/bash', '-c', cmd])
     p.communicate()
+
+
+GIT_BIN = backtick('which git').rstrip()
+
+
+def main():
+    apt_get_cmd = ' '.join(['/usr/bin/apt-get'] + sys.argv[1:])
+
+    # pre commit
+    git('add -A .')
+    git('status')
+    git('''commit -m 'BEFORE: "%s"' ''' % apt_get_cmd)
+
+    # run actual apt-get command
+    sudo(apt_get_cmd)
+
+    # update package list
+    sudo('dpkg -l > /etc/eliot-dpkg-list')
+
+    # post commit
+    git('add -A .')
+    git('status')
+    git('''commit -m 'AFTER: "%s"' ''' % apt_get_cmd)
+
+
+def git(git_cmd):
+    sudo('cd /etc && %s %s' % (GIT_BIN, git_cmd))
 
 
 if __name__ == '__main__':
