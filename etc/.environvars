@@ -21,6 +21,7 @@ export HISTSIZE=5000
 export HISTFILESIZE=20000
 export GREP_OPTIONS='--binary-files=without-match --color'
 export BCAT_BROWSER='firefox'
+export PROMPT_COMMAND="history -a"
 
 # django
 export DJANGO_SETTINGS_MODULE=settings

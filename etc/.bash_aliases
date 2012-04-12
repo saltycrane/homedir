@@ -35,6 +35,7 @@ alias dotme="source ~/.bashrc"
 alias diff="colordiff"
 alias svndiff="svn diff | colordiff"
 alias whatismyip='curl ifconfig.me'
+alias uphist='history -n'
 
 # directory aliases
 alias inc='cd ~/incoming'
