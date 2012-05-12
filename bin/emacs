@@ -1,4 +1,1 @@
-#!/bin/sh
-
-. ../.emacs.d/venv/bin/activate
-/usr/bin/emacs --daemon
+../.emacs.d/bin/emacs
