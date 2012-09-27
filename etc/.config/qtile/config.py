@@ -61,11 +61,11 @@ keys = [
     Key([mod], "j",                lazy.layout.up()),
     Key([mod], "h",                lazy.layout.previous()),
     Key([mod], "l",                lazy.layout.next()),
-    # DOESNT WORK
-    Key([mod, "shift"], "k",       lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "j",       lazy.layout.shuffle_down()),
-    # Key([mod, "shift"], "k",       lazy.layout.move_up()),
-    # Key([mod, "shift"], "j",       lazy.layout.move_down()),
+    Key([mod, "control"], "k",     lazy.layout.shuffle_up()),
+    Key([mod, "control"], "j",     lazy.layout.shuffle_down()),
+    # move_up() and move_down() are only supported by tree layout
+    Key([mod, "shift"], "k",       lazy.layout.move_up()),
+    Key([mod, "shift"], "j",       lazy.layout.move_down()),
     Key([mod, "shift"], "h",       lazy.layout.client_to_previous()),
     Key([mod, "shift"], "l",       lazy.layout.client_to_next()),
     Key([mod], "d",                lazy.layout.toggle_split()),
@@ -73,8 +73,7 @@ keys = [
     Key([mod], "F12",              lazy.window.toggle_fullscreen()),
     Key([mod], "u",                lazy.layout.rotate()),
     Key([mod], "Tab",              lazy.nextlayout()),
-
-    # DOESNT WORK
+    # decrease_ratio() and increase_ratio() are only supported by tile layouts
     Key([mod], "q", lazy.layout.decrease_ratio()),
     Key([mod], "e", lazy.layout.increase_ratio()),
 
