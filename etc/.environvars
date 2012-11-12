@@ -17,8 +17,8 @@ export HGUSER="${USER}@${HOSTNAME}"
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"
 export ALTERNATE_EDITOR=emacs
-export HISTSIZE=5000
-export HISTFILESIZE=20000
+export HISTSIZE=15000
+export HISTFILESIZE=30000
 export GREP_OPTIONS='--binary-files=without-match --color'
 export BCAT_BROWSER='firefox'
 export PROMPT_COMMAND="history -a"
