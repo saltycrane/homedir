@@ -1,4 +1,5 @@
 xmodmap ~/.Xmodmap
+xset m 0.5
 sleep 2
 gnome-settings-daemon&
 gnome-power-manager&

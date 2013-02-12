@@ -65,12 +65,18 @@ def main():
             "! -regex '.*/\.git/.*'",
             "! -regex '.*/\.ropeproject/.*'",
             "! -regex '.*\.min\.js$'",
+            "! -regex '.*-min\.js$'",
+            "! -regex '.*/\.webassets-cache/.*'",
+            "! -regex '.*/assets/js/gen/.*'",
+            "! -regex '.*/cover/.*'",
+            "! -regex '.*/venv/.*'",
             " ".join(find_args),
             "-exec grep",
             " ".join(grep_args),
             "-E '%s'" % searchterm,
             "{} +",
             ])
+    print cmd
     os.system(cmd)
 
 

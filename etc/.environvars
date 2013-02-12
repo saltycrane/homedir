@@ -7,7 +7,7 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 
 # ignore some common commands when searching history
-export HISTIGNORE="dir:la:exit:jobs"
+export HISTIGNORE="dir:ll:la:exit:jobs"
 
 # make sorting case senstive (e.g. in the "ls" command)
 export LC_COLLATE=C
