@@ -11,6 +11,12 @@
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
     renames = copy
 [alias]
+    commit = commit -v
+    st = status
+    ci = commit -v
+    br = branch
+    co = checkout
+    df = diff
 	llog = log --date=local
 
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
