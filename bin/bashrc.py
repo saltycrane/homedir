@@ -30,27 +30,17 @@ PATTERN = r"""
 FILELIST_TO_GENERATE = [
     '.Xdefaults',
     '.Xmodmap',
-    '.bashrc',
-    '.emacs',
-    ]
+]
 
-###############################################################################
+
 def main():
-
     print2stderr("running ~/.bashrc.py...")
     print2stderr("  you are on host %s" % HOSTNAME)
     comment_regex = re.compile(PATTERN, re.VERBOSE)
 
-    # walk through the ~/etc directory and the ~/etc/$HOSTNAME/etc directory,
-    # and create a list of files to generate
-    filelist = []
-    filelist = append_filelist(ETCPATH, filelist)
-    filelist = append_filelist(LOCALETCPATH, filelist)
-
     # generate new files in the home directory
-    for filename in filelist:
-        if filename not in FILELIST_TO_GENERATE:
-            continue
+    for filename in FILELIST_TO_GENERATE:
+
         print2stderr("  generating ~/%s..." % filename)
         homefile = "%s/%s" % (HOME, filename)
         basefile = "%s/%s" % (ETCPATH, filename)
@@ -59,7 +49,7 @@ def main():
 
         # backup home file, if it exists
         if os.path.isfile(homefile):
-            os.rename(homefile, homefile+".bak")
+            os.rename(homefile, homefile + ".bak")
 
         # create folder path if it doesn't exist
         if not os.path.exists(folderpath):
@@ -89,25 +79,10 @@ def main():
         # make it executable
         os.system("chmod +x %s" % homefile)
 
-###############################################################################
+
 def print2stderr(string):
-    sys.stderr.write(string+'\n')
+    sys.stderr.write(string + '\n')
 
-###############################################################################
-def append_filelist(startpath, filelist):
-    """ Walks the path, startpath, and appends files to the list, filelist """
-    if os.path.exists(startpath):
-        os.chdir(startpath)
-        for (path, dirs, files) in os.walk(startpath):
-            path += "/"
-            path = path.lstrip(startpath+"/")
-            for filename in files:
-                if not re.search(r"(^\.bashrc|(^|/)\#.*\#|~|\.bak|\.orig)$", filename):
-                    filepath = "%s%s" % (path, filename)
-                    if filepath not in filelist:
-                        filelist.append(filepath)
-    return filelist
 
-###############################################################################
 if __name__ == "__main__":
     main()
