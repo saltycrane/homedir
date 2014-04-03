@@ -1,7 +1,0 @@
-#!/bin/bash
-# for emacs
-
-# TODO move this script into the emacs directory
-/home/eliot/.emacs.d/venv/bin/pyflakes "$1"
-/home/eliot/.emacs.d/venv/bin/pep8 --ignore=E302,E501,E241 --repeat "$1"
-true
