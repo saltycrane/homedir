@@ -1,0 +1,14 @@
+! ~/local/localhost/etc/.Xmodmap
+!
+! acer c720 chromebook
+!
+! use xev to get keycode
+! askubuntu.com/questions/24916 
+!
+! swap left super (search key) and left ctrl key
+clear mod4
+clear control
+keycode 133 = Control_L
+keycode 37 = Super_L
+add mod4 = Super_L
+add control = Control_L Control_R
