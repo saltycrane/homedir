@@ -13,6 +13,7 @@
 [alias]
     commit = commit -v
     st = status
+    tst = status  # to fix "gi tst" -> "git st"
     ci = commit -v
     br = branch
     co = checkout

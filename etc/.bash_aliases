@@ -37,6 +37,7 @@ alias svndiff="svn diff | colordiff"
 alias whatismyip='curl ifconfig.me'
 alias uphist='history -n'
 alias go='xdg-open'
+alias gi='git'
 
 # directory aliases
 alias inc='cd ~/incoming'

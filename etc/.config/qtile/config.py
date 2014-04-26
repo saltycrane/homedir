@@ -142,10 +142,11 @@ try:
     layouts = [
         # 30in monitor
         layout.Stack(stacks=[20, 40, 40], name='stack_204040', border_width=1),
-        layout.Stack(stacks=[20, 25, 55], name='stack_202555', border_width=1),
-        layout.Stack(stacks=[35, 40, 25], name='stack_304030', border_width=1),
-        layout.Stack(stacks=[20, 80], name='stack_2080', border_width=1),
         layout.Stack(stacks=[40, 60], name='stack_4060', border_width=1),
+        layout.Stack(stacks=[20, 80], name='stack_2080', border_width=1),
+        # layout.Stack(stacks=[20, 25, 55], name='stack_202555', border_width=1),
+        # layout.Stack(stacks=[35, 40, 25], name='stack_304030', border_width=1),
+        layout.Stack(stacks=[60, 40], name='stack_6040', border_width=1),
         # layout.Slice(
         #     'top', 320, wmclass='pino', name='asdf',
         #     fallback=layout.Stack([50, 50], **border),
@@ -157,7 +158,7 @@ try:
         # # 23in monitor
         # layout.Stack(stacks=[50, 50], border_width=1),
         # layout.Stack(stacks=[40, 60], border_width=1),
-        # layout.Max(),
+        layout.Max(),
 
         # layout.Tile(),
         # layout.Tile(ratio=0.25),
@@ -170,6 +171,17 @@ try:
             'Really quit?',
             'Disable Display Device',
             ):
+        # # The below code causes crashes
+        # window_name = window.window.get_name()
+        # if window_name in (
+        #         'NVIDIA X Server Settings',
+        #         'Really quit?',
+        #         'Disable Display Device',
+        # ) or window_name.startswith(
+        #     (
+        #         'Opening ',
+        #     )
+        # ):
             window.floating = True
 
     # Specify group names, and use the group name list to generate an appropriate
