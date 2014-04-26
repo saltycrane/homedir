@@ -55,7 +55,13 @@ import sys
 
 
 def main():
-    apt_get_cmd = ' '.join(['/usr/bin/apt-get'] + sys.argv[1:])
+    if 'apt-get' in sys.argv[0]:
+        apt_get_cmd = ' '.join(['/usr/bin/apt-get'] + sys.argv[1:])
+    elif 'apt-mark' in sys.argv[0]:
+        apt_get_cmd = ' '.join(['/usr/bin/apt-mark'] + sys.argv[1:])
+    else:
+        print 'Error: bad command: %s' % sys.argv[0]
+        return
 
     # pre commit
     git('add -A .')
