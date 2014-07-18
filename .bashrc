@@ -27,6 +27,7 @@ fi
 source $HOME/etc/.bash_prompt
 source $HOME/etc/.environvars
 source $HOME/etc/.bash_aliases
+source $HOME/etc/.bash_functions
 source $HOME/prv/.bashrc
 
 # setup machine specific config files
