@@ -6,12 +6,12 @@ echo "sourcing ~/etc/.bash_prompt..." 1>&2
 GIT_PROMPT_PREFIX="("
 GIT_PROMPT_SUFFIX=")"
 GIT_PROMPT_DIRTY="*"
-GIT_PROMPT_UNTRACKED="!"
+GIT_PROMPT_UNTRACKED=""
 GIT_PROMPT_CLEAN=""
 
 # get the name of the branch we are on
 function git_prompt_info() {
-    ref=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/git::\1/') || return
+    ref=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/') || return
     echo "$GIT_PROMPT_PREFIX$ref$(parse_git_dirty)$GIT_PROMPT_SUFFIX"
 }
  

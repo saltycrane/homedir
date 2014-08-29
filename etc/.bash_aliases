@@ -22,11 +22,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-alias cd..='cd ..'
-alias cd...='cd ../..'
-alias cd....='cd ../../..'
-alias cd.....='cd ../../../..'
-alias cd......='cd ../../../../..'
 alias h='history'
 alias tracked='hg status -marcdu'
 alias ps='ps --forest'
@@ -38,12 +33,10 @@ alias whatismyip='curl ifconfig.me'
 alias uphist='history -n'
 alias go='xdg-open'
 alias gi='git'
+alias less='less -R'
 
 # directory aliases
 alias inc='cd ~/incoming'
 alias iwi='cd ~/src/web/iwiwdsmi/2008'
 alias pydev='cd ~/src/python'
 alias loc="cd ~/local/$HOSTNAME"
-
-# remote aliases
-alias ti='tigersync.py'

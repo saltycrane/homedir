@@ -4,3 +4,5 @@
 twistd.log*
 twistd.pid
 venv
+*.orig
+*_flymake.*
