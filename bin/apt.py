@@ -59,6 +59,8 @@ def main():
         apt_get_cmd = ' '.join(['/usr/bin/apt-get'] + sys.argv[1:])
     elif 'apt-mark' in sys.argv[0]:
         apt_get_cmd = ' '.join(['/usr/bin/apt-mark'] + sys.argv[1:])
+    elif 'apt-add-repository' in sys.argv[0]:
+        apt_get_cmd = ' '.join(['/usr/bin/apt-add-repository'] + sys.argv[1:])
     else:
         print 'Error: bad command: %s' % sys.argv[0]
         return
