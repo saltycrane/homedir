@@ -81,6 +81,7 @@ try:
         Key([mod], "Return",           lazy.spawn("urxvt")),
         Key([mod], "F2", lazy.spawn("dmenu_run -fn 'Monospace:size=10' -nb '#000000' -nf '#fefefe'")),
         Key([mod], "F4", lazy.spawn("slock")),
+        # Key([mod], "F4", lazy.spawn("gnome-screensaver-command -l")),
         Key([mod, "shift"], "c",       lazy.window.kill()),
 
         # Layout commands
@@ -135,18 +136,18 @@ try:
     # Border settings for layouts
     border = dict(
         border_normal='#808080',
-        border_width=2,
+        border_width=4,
     )
 
     # Two basic layouts.
     layouts = [
         # 30in monitor
-        layout.Stack(stacks=[20, 40, 40], name='stack_204040', border_width=1),
-        layout.Stack(stacks=[40, 60], name='stack_4060', border_width=1),
-        layout.Stack(stacks=[20, 80], name='stack_2080', border_width=1),
-        # layout.Stack(stacks=[20, 25, 55], name='stack_202555', border_width=1),
-        # layout.Stack(stacks=[35, 40, 25], name='stack_304030', border_width=1),
-        layout.Stack(stacks=[60, 40], name='stack_6040', border_width=1),
+        layout.Stack(stacks=[20, 40, 40], name='stack_204040', **border),
+        layout.Stack(stacks=[40, 60], name='stack_4060', **border),
+        layout.Stack(stacks=[20, 80], name='stack_2080', **border),
+        # layout.Stack(stacks=[20, 25, 55], name='stack_202555', **border),
+        # layout.Stack(stacks=[35, 40, 25], name='stack_304030', **border),
+        layout.Stack(stacks=[60, 40], name='stack_6040', **border),
         # layout.Slice(
         #     'top', 320, wmclass='pino', name='asdf',
         #     fallback=layout.Stack([50, 50], **border),
@@ -156,8 +157,8 @@ try:
         #     fallback=layout.Stack([100], **border))),
 
         # # 23in monitor
-        # layout.Stack(stacks=[50, 50], border_width=1),
-        # layout.Stack(stacks=[40, 60], border_width=1),
+        # layout.Stack(stacks=[50, 50], **border),
+        # layout.Stack(stacks=[40, 60], **border),
         layout.Max(),
 
         # layout.Tile(),
@@ -188,7 +189,7 @@ try:
     # set of bindings for group switching.
     groups = [
         Group('1-main', layout='stack_204040'),
-        Group('2-email', layout='stack_2080'),
+        Group('2-email', layout='stack_4060'),
         Group('3-vm', layout='stack_2080'),
         Group('4-misc', layout='stack_2080'),
     ]
