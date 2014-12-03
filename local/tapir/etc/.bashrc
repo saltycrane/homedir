@@ -10,6 +10,6 @@ echo "sourcing ~/local/tapir/etc/.bashrc..." 1>&2
 # export WORKON_HOME=$HOME/.virtualenvs
 # source /usr/local/bin/virtualenvwrapper.sh
 
-# Set mouse speed: http://askubuntu.com/questions/134323/cant-slow-down-the-pointer-speed-enough
-echo "setting mouse speed..." 1>&2
-xset m 4
+# # Set mouse speed: http://askubuntu.com/questions/134323/cant-slow-down-the-pointer-speed-enough
+# echo "setting mouse speed..." 1>&2
+# xset m 4
