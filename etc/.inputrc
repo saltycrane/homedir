@@ -6,7 +6,8 @@
 # # misc
 set bell-style visible
 # #set expand-tilde off # doesnt do what i thought
-tab: menu-complete
+# tab: menu-complete
+set show-all-if-ambiguous on
 
 # # movement keys
 "\C-h": backward-char
