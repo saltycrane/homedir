@@ -47,7 +47,7 @@ try:
                     # This is a list of our virtual desktops.
                     widget.GroupBox(urgent_alert_method='text', **font_options),
 
-                    widget.Spacer(width=200),
+                    widget.Spacer(width=50),
                     # A prompt for spawning processes or switching groups. This will be
                     # invisible most of the time.
                     widget.Prompt(),
@@ -142,27 +142,15 @@ try:
     # Two basic layouts.
     layouts = [
         # 30in monitor
-        layout.Stack(stacks=[20, 40, 40], name='stack_204040', **border),
-        layout.Stack(stacks=[40, 60], name='stack_4060', **border),
-        layout.Stack(stacks=[20, 80], name='stack_2080', **border),
-        # layout.Stack(stacks=[20, 25, 55], name='stack_202555', **border),
-        # layout.Stack(stacks=[35, 40, 25], name='stack_304030', **border),
-        layout.Stack(stacks=[60, 40], name='stack_6040', **border),
-        # layout.Slice(
-        #     'top', 320, wmclass='pino', name='asdf',
-        #     fallback=layout.Stack([50, 50], **border),
-        # ),
-        # layout.Slice('left', 192, role='gimp-toolbox',
-        #     fallback=layout.Slice('right', 256, role='gimp-dock',
-        #     fallback=layout.Stack([100], **border))),
+        layout.Stack(stacks=[40, 40, 20], name='s404020', **border),
+        layout.Stack(stacks=[60, 40], name='s6040', **border),
+        layout.Stack(stacks=[80, 20], name='s8020', **border),
+        layout.Max(),
 
         # # 23in monitor
         # layout.Stack(stacks=[50, 50], **border),
         # layout.Stack(stacks=[40, 60], **border),
-        layout.Max(),
-
-        # layout.Tile(),
-        # layout.Tile(ratio=0.25),
+        # layout.Max(),
     ]
 
     @hook.subscribe.client_new
@@ -188,10 +176,10 @@ try:
     # Specify group names, and use the group name list to generate an appropriate
     # set of bindings for group switching.
     groups = [
-        Group('1-main', layout='stack_204040'),
-        Group('2-email', layout='stack_4060'),
-        Group('3-vm', layout='stack_2080'),
-        Group('4-misc', layout='stack_2080'),
+        Group('1-main', layout='s404020'),
+        Group('2-email', layout='s6040'),
+        Group('3-vm', layout='s8020'),
+        Group('4-misc', layout='s8020'),
     ]
     for i, group in enumerate(groups, start=1):
         keys.append(
