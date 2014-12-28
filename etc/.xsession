@@ -7,6 +7,7 @@ unity-settings-daemon&
 gnome-screensaver&
 nm-applet --sm-disable&
 # gnome-panel&
+dropbox start
 urxvt &
 # exec wmii
 exec qtile
