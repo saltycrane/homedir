@@ -1,1 +1,1 @@
-* * * * * eliot curl ipecho.net/plain > /home/eliot/Dropbox/tadpole-ip.txt
+*/5 * * * * eliot curl ipecho.net/plain > /home/eliot/Dropbox/tadpole-ip.txt
