@@ -10,4 +10,5 @@ nm-applet --sm-disable&
 dropbox start
 urxvt &
 # exec wmii
-exec qtile
+# exec qtile
+exec qtile_new -c ~/.config/qtile/config_new.py
