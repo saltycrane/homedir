@@ -1,3 +1,5 @@
+import socket
+
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
@@ -54,13 +56,40 @@ keys = [
     Key([mod], "minus", lazy.spawn("amixer -c 0 -q set Master 2dB-")),
 ]
 
-# groups = [Group(i) for i in "asdfuiop"]
-groups = [
-    Group('1-main', layout='s404020'),
-    Group('2-email', layout='s6040'),
-    Group('3-vm', layout='s8020'),
-    Group('4-misc', layout='s8020'),
-]
+border = {
+    'border_normal': '#808080',
+    'border_width': 4,
+}
+
+hostname = socket.gethostname()
+
+if hostname == 'tapir':
+    layouts = [
+        layout.VWStack(stack_widths=[40, 40, 20], name='s404020', **border),
+        layout.VWStack(stack_widths=[60, 40], name='s6040', **border),
+        layout.VWStack(stack_widths=[80, 20], name='s8020', **border),
+        layout.Max(),
+    ]
+    groups = [
+        Group('1-main', layout='s404020'),
+        Group('2-email', layout='s6040'),
+        Group('3-vm', layout='s8020'),
+        Group('4-misc', layout='s8020'),
+    ]
+else:
+    layouts = [
+        layout.VWStack(stack_widths=[60, 40], name='s6040', **border),
+        layout.VWStack(stack_widths=[80, 20], name='s8020', **border),
+        layout.Max(),
+        layout.VWStack(stack_widths=[50, 50], name='s5050', **border),
+    ]
+    groups = [
+        Group('1-main', layout='s6040'),
+        Group('2-email', layout='s6040'),
+        Group('3-vm', layout='s8020'),
+        Group('4-misc', layout='s8020'),
+    ]
+
 for i, group in enumerate(groups, start=1):
     keys.append(
         Key([mod], str(i), lazy.group[group.name].toscreen())
@@ -68,19 +97,6 @@ for i, group in enumerate(groups, start=1):
     keys.append(
         Key([mod, "shift"], str(i), lazy.window.togroup(group.name))
     )
-
-# Border settings for layouts
-border = {
-    'border_normal': '#808080',
-    'border_width': 4,
-}
-
-layouts = [
-    layout.VWStack(stack_widths=[40, 40, 20], name='s404020', **border),
-    layout.VWStack(stack_widths=[60, 40], name='s6040', **border),
-    layout.VWStack(stack_widths=[80, 20], name='s8020', **border),
-    layout.Max(),
-]
 
 widget_defaults = dict(
     font='Arial',
@@ -95,8 +111,6 @@ screens = [
                 widget.Spacer(width=100),
                 widget.GroupBox(),
                 widget.Prompt(),
-                widget.Sep(),
-                widget.CurrentLayout(),
                 widget.Sep(),
                 widget.Volume(),
                 widget.Sep(),
