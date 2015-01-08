@@ -1,13 +1,9 @@
 ! ~/local/tang/etc/.Xmodmap
 !
-
-!clear lock
-!clear control
-!keycode 66 = Control_L
-!keycode 37 = Caps_Lock
-!add lock = Caps_Lock
-!add control = Control_L Control_R
-
+! helpful commands:
+!   xev
+!   xmodmap -pke
+!
 ! Lenovo X1 Carbon.
 ! Change both Home and End keys to Control
 ! Change Escape to backtick/tilde
@@ -30,9 +26,14 @@ add control = Control_L Control_R
 add lock = Caps_Lock
 
 ! ! External keyboard (Leopold tenkeyless)
+! ! Change caps to control, escape to caps, and control to escape
+! ! 66 was Caps_Lock
+! ! 37 was Control_L
+! ! 9 was Escape
 ! clear lock
 ! clear control
 ! keycode 66 = Control_L
-! keycode 37 = Caps_Lock
+! keycode 9 = Caps_Lock
+! keycode 37 = Escape
 ! add lock = Caps_Lock
 ! add control = Control_L Control_R

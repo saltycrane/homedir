@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 """
 usage: insert paper into scanner, then run ./scandoc.py
+
+scandoc.py -p -o mydoc.pdf
+
+TODO: add option for duplex
+
 """
 import optparse
 import os

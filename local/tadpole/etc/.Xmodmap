@@ -1,30 +1,17 @@
-! ~/local/tiger/etc/.Xmodmap
+! ~/local/tadpole/etc/.Xmodmap
 !
-! Ubuntu setup to use left Windows key and the Menu key as Mod4
-! Also, remove right Windows key from Mod4 for consistency with other setups
-! 117 is the Menu key
-! 115 and 127 were mapped to Super_L
-! 116 was Super_R
+! helpful commands:
+!   xev
+!   xmodmap -pke
 !
-! clear mod4
-! keycode 116 =
-! keycode 117 = Super_R
-! add mod4 = Super_L Super_R
-
-! swap caps lock and left ctrl key (abs way)
+! Change caps to control, escape to caps, and control to escape
 ! 66 was Caps_Lock
 ! 37 was Control_L
+! 9 was Escape
 clear lock
 clear control
 keycode 66 = Control_L
-keycode 37 = Caps_Lock
+keycode 9 = Caps_Lock
+keycode 37 = Escape
 add lock = Caps_Lock
 add control = Control_L Control_R
-
-! swap caps lock and left ctrl key
-!remove Lock = Caps_Lock
-!remove Control = Control_L
-!keysym Control_L = Caps_Lock
-!keysym Caps_Lock = Control_L
-!add Lock = Caps_Lock
-!add Control = Control_L
