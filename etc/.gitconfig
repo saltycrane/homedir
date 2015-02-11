@@ -10,6 +10,7 @@
 [diff]
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
     renames = copy
+    tool = kdiff3
 [alias]
     commit = commit -v
     st = status
@@ -20,8 +21,17 @@
     df = diff
 	llog = log --date=local
 
-    # list recent local branches
-    rec = for-each-ref --count=10 --sort=-committerdate --format='%(refname:short)' refs/heads/
+    # list recent local and remote branches
+    # http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+    # http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+    # http://stackoverflow.com/questions/13582872/gitconfig-bad-config-for-shell-command
+    rec = "!f() { \
+              echo 'REMOTE'; \
+              git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/remotes | sed 's/origin\\///g'; \
+              echo; \
+              echo 'LOCAL'; \
+              git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/heads; \
+          }; f"
 
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
     # show full history in gitk (including "deleted" branches and stashes)
