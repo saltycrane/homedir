@@ -20,6 +20,9 @@
     df = diff
 	llog = log --date=local
 
+    # list recent local branches
+    rec = for-each-ref --count=10 --sort=-committerdate --format='%(refname:short)' refs/heads/
+
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
     # show full history in gitk (including "deleted" branches and stashes)
     history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
