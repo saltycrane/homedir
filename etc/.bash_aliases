@@ -34,9 +34,8 @@ alias uphist='history -n'
 alias go='xdg-open'
 alias gi='git'
 alias less='less -R'
+# alias recfind="find -type f -printf '%T@ %p\0' |sort -zk 1nr |sed -z 's/^[^ ]* //' |xargs -0n1"
 
 # directory aliases
 alias inc='cd ~/incoming'
-alias iwi='cd ~/src/web/iwiwdsmi/2008'
-alias pydev='cd ~/src/python'
 alias loc="cd ~/local/$HOSTNAME"

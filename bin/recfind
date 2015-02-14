@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+
+"""
+Unix find command sorted by modification time.
+http://superuser.com/questions/294161/unix-linux-find-and-sort-by-date-modified
+"""
+
+import optparse
+import os
+
+
+def main():
+    parser = optparse.OptionParser()
+    parser.add_option("--print",
+                      action="store_true",
+                      dest="printonly",
+                      default=False,
+                      help="Print the command only",
+                      )
+    parser.add_option("-r", "--reverse",
+                      action="store_true",
+                      dest="reverse",
+                      default=False,
+                      help="Sort newest first (default: oldest first)",
+                      )
+    parser.add_option("-n", "--lines",
+                      action="store",
+                      dest="lines",
+                      default=None,
+                      help="Maximum number of results to return",
+                      )
+    options, args = parser.parse_args()
+
+    path = '.'
+    if len(args) > 0:
+        path = args[0]
+
+    if options.reverse:
+        sort_args = '-k 1n'
+    else:
+        sort_args = '-k 1nr'
+
+    if options.lines:
+        head_cmd = '| head -n ' + options.lines
+    else:
+        head_cmd = ''
+
+    cmd = " ".join([
+        "find " + path + " -type f -printf '%T@ %p\n'",
+        "| sort " + sort_args,
+        "| sed 's/^[^ ]* //'",
+        "| xargs -0n1",
+        head_cmd,
+    ])
+    if options.printonly:
+        print cmd
+    else:
+        os.system(cmd)
+
+
+if __name__ == '__main__':
+    main()

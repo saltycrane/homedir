@@ -1,1 +1,0 @@
-../prv/bin/tigersync.py
