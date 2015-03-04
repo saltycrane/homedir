@@ -6,3 +6,4 @@ twistd.pid
 venv
 *.orig
 *_flymake.*
+*.pyc
