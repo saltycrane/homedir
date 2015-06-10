@@ -1,0 +1,3 @@
+[submodule "lib/icdiff"]
+	path = lib/icdiff
+	url = https://github.com/jeffkaufman/icdiff.git

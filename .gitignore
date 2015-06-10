@@ -1,1 +1,6 @@
-*
+/*
+/*/
+!/bin/
+!/etc/
+!/local/
+/etc/.emacs.d/
