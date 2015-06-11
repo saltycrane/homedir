@@ -11,6 +11,14 @@
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
     renames = copy
     tool = kdiff3
+# [difftool]
+#     prompt = false
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
+    whitespace = red reverse
 [alias]
     commit = commit -v
     st = status
@@ -18,8 +26,6 @@
     ci = commit -v
     br = branch
     co = checkout
-    df = diff
-	llog = log --date=local
 
     # list recent local and remote branches
     # http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
@@ -31,6 +37,16 @@
               echo; \
               echo 'LOCAL'; \
               git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/heads; \
+          }; f"
+
+    # diff and icdiff w/ hard-coded exclude directories
+    # http://www.saltycrane.com/blog/2011/08/git-notes/#exclude-files-git-diff
+    # https://github.com/jeffkaufman/icdiff
+    di = "!f() { \
+              git diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
+          }; f"
+    id = "!f() { \
+              git difftool --no-prompt --extcmd icdiff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*' | less -R; \
           }; f"
 
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
