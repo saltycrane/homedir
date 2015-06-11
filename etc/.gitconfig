@@ -2,23 +2,34 @@
 	diff = auto
 	status = auto
 	branch = auto
+
 [user]
 	name = Eliot
 	email = eliot@tapir
+
 [core]
 	excludesfile = "~/etc/.gitignore-global"
+
 [diff]
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
     renames = copy
+
     tool = kdiff3
+
+    # http://stackoverflow.com/questions/7669963/how-can-i-get-a-side-by-side-diff-when-i-do-git-diff
+    # https://github.com/jeffkaufman/icdiff
+    external = icdiff4git
+
 # [difftool]
 #     prompt = false
+
 [color "diff"]
     meta = yellow
     frag = magenta
     old = red
     new = green
     whitespace = red reverse
+
 [alias]
     commit = commit -v
     st = status
@@ -39,15 +50,29 @@
               git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/heads; \
           }; f"
 
-    # diff and icdiff w/ hard-coded exclude directories
+    # git diff/show/log w/ hard-coded exclude directories
     # http://www.saltycrane.com/blog/2011/08/git-notes/#exclude-files-git-diff
-    # https://github.com/jeffkaufman/icdiff
     di = "!f() { \
               git diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
           }; f"
-    id = "!f() { \
-              git difftool --no-prompt --extcmd icdiff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*' | less -R; \
+    sh = "!f() { \
+              git show $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
           }; f"
+    lp = "!f() { \
+              git log -p $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
+          }; f"
+    id = "!f() { \
+              git diff --ext-diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
+          }; f"
+    is = "!f() { \
+              git show --ext-diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
+          }; f"
+    il = "!f() { \
+              git log --ext-diff -p $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
+          }; f"
+    idiff = diff --ext-diff
+    ishow = show --ext-diff
+    ilog = log --ext-diff
 
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
     # show full history in gitk (including "deleted" branches and stashes)
