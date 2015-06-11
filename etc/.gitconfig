@@ -37,6 +37,9 @@
     ci = commit -v
     br = branch
     co = checkout
+    id = diff --ext-diff
+    is = show --ext-diff
+    il = log --ext-diff -p
 
     # list recent local and remote branches
     # http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
@@ -49,30 +52,6 @@
               echo 'LOCAL'; \
               git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/heads; \
           }; f"
-
-    # git diff/show/log w/ hard-coded exclude directories
-    # http://www.saltycrane.com/blog/2011/08/git-notes/#exclude-files-git-diff
-    di = "!f() { \
-              git diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    sh = "!f() { \
-              git show $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    lp = "!f() { \
-              git log -p $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    id = "!f() { \
-              git diff --ext-diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    is = "!f() { \
-              git show --ext-diff $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    il = "!f() { \
-              git log --ext-diff -p $@ -- . ':!*/_assets/built/*' ':!tests/robot/*'; \
-          }; f"
-    idiff = diff --ext-diff
-    ishow = show --ext-diff
-    ilog = log --ext-diff
 
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
     # show full history in gitk (including "deleted" branches and stashes)
