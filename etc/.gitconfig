@@ -37,6 +37,7 @@
     ci = commit -v
     br = branch
     co = checkout
+    di = diff --no-ext-diff
     id = diff --ext-diff
     is = show --ext-diff
     il = log --ext-diff -p

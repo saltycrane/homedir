@@ -33,7 +33,7 @@ alias whatismyip='curl ifconfig.me'
 alias uphist='history -n'
 alias go='xdg-open'
 alias gi='git'
-alias less='less -R'
+# alias less='less -R'
 # alias recfind="find -type f -printf '%T@ %p\0' |sort -zk 1nr |sed -z 's/^[^ ]* //' |xargs -0n1"
 
 # directory aliases

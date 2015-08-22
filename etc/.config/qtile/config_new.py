@@ -69,14 +69,14 @@ if hostname == 'tapir':
         layout.VWStack(stack_widths=[60, 40], name='s6040', **border),
         layout.VWStack(stack_widths=[80, 20], name='s8020', **border),
         layout.Max(),
-        layout.VWStack(stack_widths=[1, 1, 1], name='s111', **border),
+        # layout.VWStack(stack_widths=[20, 40, 40], name='s204040', **border),
+        layout.VWStack(stack_widths=[50, 50], name='s5050', **border),
     ]
     groups = [
         Group('1-main', layout='s404020'),
         Group('2-email', layout='s6040'),
         Group('3-vm', layout='s8020'),
         Group('4-misc', layout='s8020'),
-        Group('5-logs', layout='s111'),
     ]
 else:
     layouts = [
