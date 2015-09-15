@@ -1,4 +1,4 @@
-echo "sourcing ~/.bashrc..." 1>&2
+# echo "sourcing ~/.bashrc..." 1>&2
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

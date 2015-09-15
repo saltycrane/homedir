@@ -4,7 +4,7 @@
 !URxvt*font: xft:Bitstream Vera Sans Mono:size=8:style=Normal
 !Urxvt*boldFont: xft:Bitstream Vera Sans Mono:size=8:style=Normal
 
-URxvt*font: xft:Monospace:pixelsize=11
-URxvt*boldFont: xft:Monospace:pixelsize=11
+URxvt*font: xft:Monospace:pixelsize=15
+URxvt*boldFont: xft:Monospace:pixelsize=15
 
 URxvt*letterSpace: -1
