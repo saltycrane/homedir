@@ -7,5 +7,5 @@ then
     echo -e "\033[1;34mExcluded file from diff: $1\033[m"
 else
     echo -e "\033[1;34m$1\033[m"
-    /home/eliot/bin/icdiff --no-bold "$2" "$5"
+    icdiff --no-bold "$2" "$5"
 fi

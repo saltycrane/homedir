@@ -1,22 +1,16 @@
 echo "sourcing ~/etc/.bash_aliases..." 1>&2
 
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
-
 # tools aliases
-alias ls='ls --color=auto --time-style="+%Y %m/%d %H:%M"'
-alias la='ls -lA --hide "*~" --hide "*.bak" --hide "*.orig"'
-alias laa='ls -lA'
-alias ll='ls -l --hide "*~" --hide "*.bak" --hide "*.orig" --hide "*.pyc" --hide "*.o"'
+# alias ls='ls --color=auto --time-style="+%Y %m/%d %H:%M"'
+# alias la='ls -lA --hide "*~" --hide "*.bak" --hide "*.orig"'
+# alias laa='ls -lA'
+# alias ll='ls -l --hide "*~" --hide "*.bak" --hide "*.orig" --hide "*.pyc" --hide "*.o"'
+alias ls='ls -G'
+alias la='ls -lA'
+alias ll='ls -l'
 alias lr='ll -qt'
 alias lh='lr | head -20'
 alias lx='ll -X'
-alias dir='ll'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -24,7 +18,7 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias h='history'
 alias tracked='hg status -marcdu'
-alias ps='ps --forest'
+# alias ps='ps --forest'
 alias go='gnome-open'
 alias dotme="source ~/.bashrc"
 alias diff="colordiff -u"

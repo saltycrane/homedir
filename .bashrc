@@ -15,33 +15,15 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# If this is an xterm set the title to user@host:dir
-# case "$TERM" in
-# xterm*|rxvt*|screen)
-#     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-#     ;;
-# *)
-#     ;;
-# esac
-
 source $HOME/etc/.bash_prompt
 source $HOME/etc/.environvars
 source $HOME/etc/.bash_aliases
 source $HOME/etc/.bash_functions
-source $HOME/etc/.bash_hardware
 source $HOME/prv/.bashrc
-
-# setup machine specific config files
-python ~/bin/bashrc.py
 
 # source machine specific .bashrc
 if [ -f ~/local/${HOSTNAME}/etc/.bashrc ]; then
     . ~/local/${HOSTNAME}/etc/.bashrc
-fi
-
-# set up keyboard mapping
-if [ -f ~/.Xmodmap ]; then
-    xmodmap ~/.Xmodmap
 fi
 
 # enable programmable completion features (you don't need to enable

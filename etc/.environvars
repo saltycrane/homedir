@@ -26,9 +26,9 @@ export PROMPT_COMMAND="history -a"
 # django
 export DJANGO_SETTINGS_MODULE=settings
 
-#virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+# #virtualenvwrapper
+# export WORKON_HOME=$HOME/.virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # for EC2 command-line tools
 # export JAVA_HOME=/usr
