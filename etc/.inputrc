@@ -10,14 +10,12 @@ set bell-style visible
 set show-all-if-ambiguous on
 
 # # movement keys
-"\C-h": backward-char
-"\C-l": forward-char
+# "\C-h": backward-char
+# "\C-l": forward-char
 # #"\C-j": next-history
 # #"\C-k": previous-history
 # "\C-i": kill-line # this breaks tab completion
-#"\M-h":
-#"\M-l":
-"\M-h": backward-word
-"\M-l": forward-word
+# "\M-h": backward-word
+# "\M-l": forward-word
 
 #"\e[[A":"ps -a --forest"
