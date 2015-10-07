@@ -10,6 +10,9 @@
 [core]
 	excludesfile = "~/etc/.gitignore-global"
 
+[merge]
+    tool = kdiff3
+
 [diff]
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/2466768#2466768
     renames = copy
