@@ -58,7 +58,7 @@
     <name>Swap Left Option and Command</name>
     <appendix>Use w/ Mac keyboards</appendix>
 
-    <identifier>saltycrane.swap_option_and_command</identifier>
+    <identifier>saltycrane.swap_left_option_and_command</identifier>
     <autogen>
       --KeyToKey--
       KeyCode::OPTION_L,
@@ -70,4 +70,21 @@
       KeyCode::OPTION_L,
     </autogen>
   </item>
+  <item>
+    <name>Swap Right Option and Command</name>
+    <appendix>Use w/ Mac keyboards</appendix>
+
+    <identifier>saltycrane.swap_right_option_and_command</identifier>
+    <autogen>
+      --KeyToKey--
+      KeyCode::OPTION_R,
+      KeyCode::COMMAND_R,
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::COMMAND_R,
+      KeyCode::OPTION_R,
+    </autogen>
+  </item>
+
 </root>

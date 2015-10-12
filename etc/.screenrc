@@ -10,7 +10,7 @@ bind c screen 11
 
 # Create initial windows
 screen -t home 0
-screen -t /etc 2 bash -c "cd /etc; bash"
+# screen -t /etc 2 bash -c "cd /etc; bash"
 
 # Set the caption on the bottom line:
 # from http://diveintomark.org/public/2007/03/screenrc
@@ -65,19 +65,19 @@ bindkey -m "^ " eval "stuff ' '" writebuf "exec sh -c 'xsel -i < /tmp/screen-exc
 # special hack for C-e, since it should go *past* the last char.
 bindkey -m ^e stuff "\$l"
 
-# make copy mode behave more like my emacs
-bindkey "^[k" eval "copy" "stuff ^b"
-bindkey "^k" eval "copy" "stuff k"
-bindkey -m "^[j" stuff ^f   # move down one page
-bindkey -m "^[k" stuff ^b   # move up one page
-bindkey -m "^[h" stuff b    # move backward word
-bindkey -m "^[l" stuff w    # move forward by word
-bindkey -m "^j" stuff j     # move down one line
-bindkey -m "^k" stuff k     # move up one line
-bindkey -m "^h" stuff h     # move back one character
-bindkey -m "^l" stuff l     # move forward one character
+# make copy mode behave more like emacs
+bindkey "^[p" eval "copy" "stuff ^b"
+# bindkey "^p" eval "copy" "stuff k"
+bindkey -m "^[n" stuff ^f   # move down one page
+bindkey -m "^[p" stuff ^b   # move up one page
+bindkey -m "^[b" stuff b    # move backward word
+bindkey -m "^[f" stuff w    # move forward by word
+bindkey -m "^n" stuff j     # move down one line
+bindkey -m "^p" stuff k     # move up one line
+bindkey -m "^b" stuff h     # move back one character
+bindkey -m "^f" stuff l     # move forward one character
 bindkey -m "^a" stuff 0     # move to beginning of line
-bindkey -m "^f" stuff ^s    # incremental search forward
+# bindkey -m "^s" stuff ^s    # incremental search forward
 bindkey -m "^g" stuff q     # exit copy mode
 
 # use backtick for prefix key instead of Ctrl-A
