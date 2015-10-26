@@ -6,6 +6,7 @@
     "es6": true,
     "node": true
   },
+  "extends": "eslint:recommended",
   "ecmaFeatures": {
     "arrowFunctions": true,
     "blockBindings": true,
@@ -28,6 +29,7 @@
     "no-shadow": [0],
     "no-unused-vars": [1],
     "no-use-before-define": [2, "nofunc"],
+    "comma-dangle": [0, "always-multiline"],
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1
