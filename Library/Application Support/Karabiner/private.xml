@@ -25,6 +25,18 @@
     </autogen>
   </item>
   <item>
+    <name>Caps Lock to Escape (Vi)</name>
+    <appendix>Use w/ PC and Mac keyboards</appendix>
+    <appendix>This assumes that Seil has been used to remap Caps Lock to F19 (keycode 80)</appendix>
+
+    <identifier>saltycrane.caps_lock_to_escape</identifier>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F19,
+      KeyCode::ESCAPE,
+    </autogen>
+  </item>
+  <item>
       <name>Shift_L to Shift_L</name>
       <appendix>Use w/ PC and Mac keyboards</appendix>
       <appendix>(+ When you type Shift_L only, Sticky Shift_L)</appendix>

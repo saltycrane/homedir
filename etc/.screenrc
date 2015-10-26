@@ -30,12 +30,7 @@ autodetach on
 ignorecase on
 
 # bindings
-#bind W screen -t 'w3m' 4 w3m http://google.com/
-#bind Y stuff http://whytheluckystiff.net/
 bind p screen python 1
-#bindkey -t foo stuff barfoo
-#bindkey -t "`py" screen python
-# bindkey -t "^=" stuff printf '\33]50;%s%d\007' "xft:Monospace:pixelsize=14" # doesnt work
 bindkey -t "`10" select 10
 bindkey -t "`11" select 11
 bindkey -t "`12" select 12
@@ -46,8 +41,7 @@ bindkey -t "`16" select 16
 bindkey -t "`17" select 17
 bindkey -t "`18" select 18
 bindkey -t "`19" select 19
-bindkey "^B" select
-bindkey -t "`~" stuff /mnt/cdrive/home/eliot/
+# bindkey "^B" select
 
 # C-g  quit command mode
 bind ^g fit
@@ -62,22 +56,22 @@ markkeys \033=\015=^G
 # http://snarfed.org/dotfiles/.screenrc
 bindkey -m "^ " eval "stuff ' '" writebuf "exec sh -c 'xsel -i < /tmp/screen-exchange'"
 
-# special hack for C-e, since it should go *past* the last char.
-bindkey -m ^e stuff "\$l"
+# # special hack for C-e, since it should go *past* the last char.
+# bindkey -m ^e stuff "\$l"
 
-# make copy mode behave more like emacs
-bindkey "^[p" eval "copy" "stuff ^b"
-# bindkey "^p" eval "copy" "stuff k"
-bindkey -m "^[n" stuff ^f   # move down one page
-bindkey -m "^[p" stuff ^b   # move up one page
-bindkey -m "^[b" stuff b    # move backward word
-bindkey -m "^[f" stuff w    # move forward by word
-bindkey -m "^n" stuff j     # move down one line
-bindkey -m "^p" stuff k     # move up one line
-bindkey -m "^b" stuff h     # move back one character
-bindkey -m "^f" stuff l     # move forward one character
-bindkey -m "^a" stuff 0     # move to beginning of line
-# bindkey -m "^s" stuff ^s    # incremental search forward
+# # make copy mode behave more like emacs
+# bindkey "^[k" eval "copy" "stuff ^b"
+# bindkey "^k" eval "copy" "stuff k"
+# bindkey -m "^[j" stuff ^f   # move down one page
+# bindkey -m "^[k" stuff ^b   # move up one page
+# bindkey -m "^[h" stuff b    # move backward word
+# bindkey -m "^[f" stuff w    # move forward by word
+# bindkey -m "^n" stuff j     # move down one line
+# bindkey -m "^p" stuff k     # move up one line
+# bindkey -m "^b" stuff h     # move back one character
+# bindkey -m "^f" stuff l     # move forward one character
+# bindkey -m "^a" stuff 0     # move to beginning of line
+# # bindkey -m "^s" stuff ^s    # incremental search forward
 bindkey -m "^g" stuff q     # exit copy mode
 
 # use backtick for prefix key instead of Ctrl-A
