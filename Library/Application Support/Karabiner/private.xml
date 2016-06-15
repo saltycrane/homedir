@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <root>
+  <!-- /Applications/Karabiner.app/Contents/Resources/include/checkbox -->
   <item>
     <name>Re-enable Caps Lock (Vanilla)</name>
     <appendix>Use for Vanilla (default behavior)</appendix>

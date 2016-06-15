@@ -1,9 +1,35 @@
 # ~/etc/.inputrc
+# to reload this file use: bind -f ~/.inputrc
 
-# doesn't seem to work in linux
-#"\C-v": paste-from-clipboard
+set editing-mode vi
 
-# # misc
+$if mode=vi
+    # insert mode key bindings
+    # ------------------------
+    set keymap vi-insert
+
+    # map jk to escape
+    "jk": vi-movement-mode
+
+    # bindings I miss from emacs mode
+    "\e\C-h": backward-kill-word
+    "\e\C-?": backward-kill-word
+    "\C-p": previous-history
+    "\C-n": next-history
+    "\e.": yank-last-arg
+
+    # command mode key bindings
+    # -------------------------
+    set keymap vi-command
+
+    # map jk to escape (this doesn't work)
+    "jk": vi-movement-mode
+
+    # bindings from emacs mode
+    "\e.": yank-last-arg
+$endif
+
+# misc
 set bell-style visible
 # #set expand-tilde off # doesnt do what i thought
 # tab: menu-complete

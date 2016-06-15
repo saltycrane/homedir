@@ -15,8 +15,7 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set vi input mode
-set -o vi
+# see also .inputrc for editing mode
 
 source $HOME/etc/.bash_prompt
 source $HOME/etc/.environvars
@@ -35,3 +34,6 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
