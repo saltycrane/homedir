@@ -1,3 +1,4 @@
 _assets/built/
 vendor/
 dist/
+bower_components/
