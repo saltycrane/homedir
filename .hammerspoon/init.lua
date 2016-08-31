@@ -21,16 +21,16 @@ hs.hotkey.bind({"cmd", "alt", "shift"}, "1", preset1)
 -- Start here (above is messing around)
 -- Layouts
 -- ================================================================
+
+-- 2 screen SW and Main side by side
 function initPosSideBySide()
-  print("initPosSideBySide")
-  -- 2 screen SW and Main side by side
   mainPos = {
-    rect = hs.geometry.rect(0.45, 0.2, 0.5, 0.65),
+    rect = hs.geometry.rect(0.5, 0.2, 0.50, 0.65),
     screen = externalScreen,
   }
   -- going clockwise
   southWestPos = {
-    rect = hs.geometry.rect(0.15, 0.2, 0.3, 0.65),
+    rect = hs.geometry.rect(0.10, 0.2, 0.40, 0.65),
     screen = externalScreen,
   }
   northWestPos = {
@@ -55,10 +55,10 @@ function initPosSideBySide()
   }
 end
 
-function initPos2Screens()
-  -- External monitor + laptop below settings
+-- Work external monitor + laptop below settings
+function initPos2ScreensWork()
   mainPos = {
-    rect = hs.geometry.rect(0.25, 0.2, 0.5, 0.65),
+    rect = hs.geometry.rect(0.25, 0.15, 0.55, 0.67),
     screen = externalScreen,
   }
   -- going clockwise
@@ -71,7 +71,7 @@ function initPos2Screens()
     screen = externalScreen,
   }
   northPos = {
-    rect = hs.geometry.rect(0.3, 0, 0.3, 0.4),
+    rect = hs.geometry.rect(0.1, 0, 1.0, 0.4),
     screen = externalScreen,
   }
   northEastPos = {
@@ -79,7 +79,39 @@ function initPos2Screens()
     screen = externalScreen,
   }
   southEastPos = {
-    -- rect = hs.geometry.rect(0.7, 0.39, 0.3, 0.5),
+    rect = hs.geometry.rect(0.75, 0.2, 0.15, 0.65),
+    screen = externalScreen,
+  }
+  southPos = {
+    rect = hs.geometry.rect(0, 0, 1, 1),
+    screen = laptopScreen,
+  }
+end
+
+-- Home external monitor + laptop below settings
+function initPos2ScreensHome()
+  mainPos = {
+    rect = hs.geometry.rect(0.25, 0.2, 0.74, 0.65),
+    screen = externalScreen,
+  }
+  -- going clockwise
+  southWestPos = {
+    rect = hs.geometry.rect(0, 0.5, 0.26, 0.5),
+    screen = externalScreen,
+  }
+  northWestPos = {
+    rect = hs.geometry.rect(0, 0, 0.3, 0.5),
+    screen = externalScreen,
+  }
+  northPos = {
+    rect = hs.geometry.rect(0.1, 0, 1.0, 0.4),
+    screen = externalScreen,
+  }
+  northEastPos = {
+    rect = hs.geometry.rect(0.5, 0, 0.5, 0.75),
+    screen = externalScreen,
+  }
+  southEastPos = {
     rect = hs.geometry.rect(0.75, 0.2, 0.15, 0.65),
     screen = externalScreen,
   }
@@ -90,7 +122,6 @@ function initPos2Screens()
 end
 
 OFFSET_LEFT = 0.25
--- OFFSET_LEFT = 0.15
 
 function initPosSideBySideRight()
   -- Like 2 screen but with a bigger southEastPos and smaller main
@@ -116,8 +147,6 @@ function initPosSideBySideRight()
     screen = externalScreen,
   }
   southEastPos = {
-    -- rect = hs.geometry.rect(0.6, 0.2, 0.25, 0.65),
-    -- rect = hs.geometry.rect(0.6, 0.2, 0.4, 0.65),
     rect = hs.geometry.rect(OFFSET_LEFT + 0.35, 0.2, 0.3, 0.65),
     screen = externalScreen,
   }
@@ -127,8 +156,8 @@ function initPosSideBySideRight()
   }
 end
 
+-- Laptop screen settings
 function initPosSingleScreen()
-  -- Laptop screen settings
   mainPos = {
     rect = hs.geometry.rect(0.05, 0.05, 0.9, 0.95),
   }
@@ -161,10 +190,11 @@ hs.window.animationDuration = 0
 laptopScreen = nil
 externalScreen = nil
 isMultiScreen = nil
+workMode = nil  -- "work@work", "work@home", "home@home"
 posMap = {}
 _globalMeta = {}
 currentLayout = nil
-layouts = {initPos2Screens, initPosSideBySide, initPosSideBySideRight}
+layouts = {initPos2ScreensWork, initPos2ScreensHome, initPosSideBySide, initPosSideBySideRight}
 
 -- ================================================================
 -- Init
@@ -176,13 +206,34 @@ function init()
 
   -- set up my window grid
   allScreens = hs.screen.allScreens()
+
   if #allScreens > 1 then
-    hs.alert.show("multiple screens")
-    isMultiScreen = true
-    currentLayout = 1
-    initPos2Screens()
-    -- initPosSideBySide()
-    -- rotateLayout()
+    print("externalScreen")
+    print(externalScreen)
+    hs.alert.show(tostring(externalScreen))
+
+    if string.find(tostring(externalScreen), "Acer") then
+      local now = os.date("*t")
+      if now.hour >= 21 or now.wday == 1 or now.wday == 7 then
+        hs.alert.show("home@home 2 screens")
+        workMode = "home@home"
+        currentLayout = 2
+        initPosSideBySide()
+      else
+        hs.alert.show("work@home 2 screens")
+        workMode = "work@home"
+        currentLayout = 1
+        initPos2ScreensHome()
+      end
+      layouts = {initPos2ScreensHome, initPosSideBySide, initPosSideBySideRight}
+      isMultiScreen = true
+    else
+      hs.alert.show("work@work 2 screens")
+      workMode = "work@work"
+      isMultiScreen = true
+      currentLayout = 1
+      initPos2ScreensWork()
+    end
   else
     hs.alert.show("one screen")
     isMultiScreen = false
@@ -221,10 +272,6 @@ function rotateLayout()
     print (win:application():name())
     print ("---------------")
     presetWindowPos(win)
-    -- local pos = posMap[win:id()]
-    -- if pos then
-    --   moveToPosition(win, pos)
-    -- end
   end
 end
 
@@ -287,33 +334,58 @@ function presetWindowPos(win)
   local title = win:title()
 
   if isMultiScreen then
-    if string.find(name, "Emacs") then
-      moveToPosition(win, mainPos)
-    elseif string.find(name, "Slack") then
-      moveToPosition(win, northWestPos)
-    elseif string.find(name, "iTerm") and string.find(title, "1.") then
-      moveToPosition(win, southWestPos)
-    -- elseif string.find(name, "iTerm") and string.find(title, "2.") then
-    -- elseif string.find(name, "Discord") then
-    elseif string.find(name, "Hammerspoon") then
-      moveToPosition(win, northPos)
-    elseif string.find(name, "Nylas") then
-      moveToPosition(win, northEastPos)
-    -- elseif string.find(name, "Hammerspoon") then
-    -- elseif string.find(name, "Chrome") and string.find(title, "Redux DevTools") then
-    -- elseif string.find(name, "Chrome") and string.find(title, "(1024x1200)") then
-    -- elseif string.find(name, "VirtualBox") then
-    elseif string.find(name, "Firefox") then
-    -- elseif string.find(name, "Chrome") and string.find(title, "Developer Tools") then
-      moveToPosition(win, southEastPos)
-    elseif string.find(name, "Chrome") then
-      moveToPosition(win, southPos)
+    if workMode == "home@home" then
+      -- home at home, multi-screen
+      if string.find(name, "Emacs") then
+        moveToPosition(win, southPos)
+      elseif string.find(name, "Chrome") then
+        moveToPosition(win, mainPos)
+      elseif string.find(name, "iTerm") then
+        moveToPosition(win, northWestPos)
+      elseif string.find(name, "Firefox") then
+        moveToPosition(win, southWestPos)
+      elseif string.find(name, "Hammerspoon") then
+        moveToPosition(win, southEastPos)
+      end
+    elseif workMode == "work@home" then
+      -- work at home, multi-screen
+      if string.find(name, "Emacs") then
+        moveToPosition(win, southPos)
+      elseif string.find(name, "Chrome") then
+        moveToPosition(win, mainPos)
+      elseif string.find(name, "iTerm") then
+        moveToPosition(win, southWestPos)
+      elseif string.find(name, "Slack") then
+        moveToPosition(win, northWestPos)
+      elseif string.find(name, "Hammerspoon") then
+        moveToPosition(win, southEastPos)
+      end
+    elseif workMode == "work@work" then
+      -- work, multi-screen
+      if string.find(name, "Emacs") then
+        moveToPosition(win, southPos)
+      elseif string.find(name, "Chrome") and string.find(title, "BlueJeans") then
+        moveToPosition(win, northPos)
+      elseif string.find(name, "Chrome") then
+        moveToPosition(win, mainPos)
+      elseif string.find(name, "Slack") then
+        moveToPosition(win, northWestPos)
+      elseif string.find(name, "iTerm") and string.find(title, "1.") then
+        moveToPosition(win, southWestPos)
+      elseif string.find(name, "iTerm") and string.find(title, "2.") then
+        moveToPosition(win, northEastPos)
+      elseif string.find(name, "Hammerspoon") then
+      -- elseif string.find(name, "Chrome") and string.find(title, "Redux DevTools") then
+      -- elseif string.find(name, "Firefox") then
+      -- elseif string.find(name, "Chrome") and string.find(title, "Developer Tools") then
+        moveToPosition(win, southEastPos)
+      end
     end
 
   else
+    -- single screen
     if string.find(name, "Emacs") then
       moveToPosition(win, mainPos)
-    -- elseif string.find(name, "Discord") then
     elseif string.find(name, "Slack") then
       moveToPosition(win, northWestPos)
     elseif string.find(name, "iTerm") and string.find(title, "1.") then
@@ -400,7 +472,7 @@ function makeTall()
     newUnit = hs.geometry.copy(unit)
     newUnit.y = 0.0
     if meta.pos == mainPos or meta.pos == northPos then
-      newUnit.h = 0.85
+      newUnit.h = 0.82
     else
       newUnit.h = 1.0
     end

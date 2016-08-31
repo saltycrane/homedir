@@ -14,25 +14,14 @@ export LC_COLLATE=C
 
 export HOSTNAME # i dont know why this isnt exported
 export HGUSER="${USER}@${HOSTNAME}"
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
+export EDITOR="emacsclient -n"
+export VISUAL="emacsclient -n"
 export ALTERNATE_EDITOR=emacs
 export HISTSIZE=15000
 export HISTFILESIZE=30000
 export GREP_OPTIONS='--binary-files=without-match --color'
 export BCAT_BROWSER='firefox'
 export PROMPT_COMMAND="history -a"
-
-# django
-export DJANGO_SETTINGS_MODULE=settings
-
-# #virtualenvwrapper
-# export WORKON_HOME=$HOME/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# for EC2 command-line tools
-# export JAVA_HOME=/usr
-# export EC2_HOME=$HOME/lib/ec2-api-tools
 
 if [ -f /usr/bin/less ]; then
     export PAGER=less
@@ -54,6 +43,14 @@ if [ ! $PATHMODIFIED ] ; then
         PATH=~/local/${HOSTNAME}/bin:"${PATH}"
     fi
 
+    echo "Adding ~/.rvm/bin to PATH"
+    if [ -d ~/.rvm/bin ] ; then
+        PATH="$PATH:$HOME/.rvm/bin"
+    fi
+
     export PATH
     export PATHMODIFIED=1
 fi
+
+echo "Loading RVM into shell session as a function..."
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

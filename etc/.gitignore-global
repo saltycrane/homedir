@@ -10,5 +10,7 @@ venv
 .tern-port
 npm-debug.log
 .DS_Store
-.agignore
+.ignore
 .projectile
+.dumbjump
+.vscode

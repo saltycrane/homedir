@@ -57,6 +57,9 @@
               git for-each-ref --count=8 --sort=-committerdate --format='%(refname:short)' refs/heads; \
           }; f"
 
+    # http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+	  rec2 = branch --sort=committerdate --format='%(HEAD) %(color:green)%(committerdate:format:%Y-%m-%d %H:%M) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) %(color:reset)'
+
     # http://stackoverflow.com/questions/267761/what-does-your-gitconfig-contain/3202614#3202614
     # show full history in gitk (including "deleted" branches and stashes)
     history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )

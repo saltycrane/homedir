@@ -8,9 +8,6 @@ $if mode=vi
     # ------------------------
     set keymap vi-insert
 
-    # map jk to escape
-    "jk": vi-movement-mode
-
     # bindings I miss from emacs mode
     "\e\C-h": backward-kill-word
     "\e\C-?": backward-kill-word
@@ -22,9 +19,6 @@ $if mode=vi
     # -------------------------
     set keymap vi-command
 
-    # map jk to escape (this doesn't work)
-    "jk": vi-movement-mode
-
     # bindings from emacs mode
     "\e.": yank-last-arg
 $endif
@@ -34,14 +28,3 @@ set bell-style visible
 # #set expand-tilde off # doesnt do what i thought
 # tab: menu-complete
 set show-all-if-ambiguous on
-
-# # movement keys
-# "\C-h": backward-char
-# "\C-l": forward-char
-# #"\C-j": next-history
-# #"\C-k": previous-history
-# "\C-i": kill-line # this breaks tab completion
-# "\M-h": backward-word
-# "\M-l": forward-word
-
-#"\e[[A":"ps -a --forest"
