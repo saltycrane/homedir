@@ -48,6 +48,17 @@ if [ ! $PATHMODIFIED ] ; then
         PATH="$PATH:$HOME/.rvm/bin"
     fi
 
+    # for Android Development Environment (React Native)
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    echo "Adding ~/Library/Android/sdk/tools to PATH"
+    if [ -d $ANDROID_HOME/tools ] ; then
+        PATH="$PATH:$ANDROID_HOME/tools"
+    fi
+    echo "Adding ~/Library/Android/sdk/platform-tools to PATH"
+    if [ -d $ANDROID_HOME/platform-tools ] ; then
+        PATH="$PATH:$ANDROID_HOME/platform-tools"
+    fi
+
     export PATH
     export PATHMODIFIED=1
 fi

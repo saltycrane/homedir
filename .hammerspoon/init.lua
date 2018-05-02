@@ -1,424 +1,368 @@
-function preset1()
-  local externalScreen = hs.screen.allScreens()[2]:name()
-  hs.alert.show(externalScreen)
-  local mainWin = hs.geometry.rect(0.25, 0.2, 0.5, 0.65)
-  local topLeftWin = hs.geometry.rect(0, 0, 0.3, 0.5)
-  local bottomLeftWin = hs.geometry.rect(0, 0.5, 0.3, 0.5)
-  local rightWin = hs.geometry.rect(0.5, 0, 0.5, 0.75)
-
-  local windowLayout = {
-    {"Emacs", nil, externalScreen, mainWin, nil, nil},
-    {"Slack", nil, externalScreen, topLeftWin, nil, nil},
-    {"iTerm", nil, externalScreen, bottomLeftWin, nil, nil},
-    {"Google Chrome", nil, externalScreen, rightWin, nil, nil},
-  }
-  hs.layout.apply(windowLayout)
-end
-
-hs.hotkey.bind({"cmd", "alt", "shift"}, "1", preset1)
+local presetsMod = require "presets"
 
 -- ================================================================
--- Start here (above is messing around)
--- Layouts
--- ================================================================
-
--- 2 screen SW and Main side by side
-function initPosSideBySide()
-  mainPos = {
-    rect = hs.geometry.rect(0.5, 0.2, 0.50, 0.65),
-    screen = externalScreen,
-  }
-  -- going clockwise
-  southWestPos = {
-    rect = hs.geometry.rect(0.10, 0.2, 0.40, 0.65),
-    screen = externalScreen,
-  }
-  northWestPos = {
-    rect = hs.geometry.rect(0, 0, 0.3, 0.5),
-    screen = externalScreen,
-  }
-  northPos = {
-    rect = hs.geometry.rect(0.3, 0, 0.3, 0.4),
-    screen = externalScreen,
-  }
-  northEastPos = {
-    rect = hs.geometry.rect(0.5, 0, 0.5, 0.75),
-    screen = externalScreen,
-  }
-  southEastPos = {
-    rect = hs.geometry.rect(0.7, 0.39, 0.3, 0.5),
-    screen = externalScreen,
-  }
-  southPos = {
-    rect = hs.geometry.rect(0, 0, 1, 1),
-    screen = laptopScreen,
-  }
-end
-
--- Work external monitor + laptop below settings
-function initPos2ScreensWork()
-  mainPos = {
-    rect = hs.geometry.rect(0.25, 0.15, 0.55, 0.67),
-    screen = externalScreen,
-  }
-  -- going clockwise
-  southWestPos = {
-    rect = hs.geometry.rect(0, 0.5, 0.26, 0.5),
-    screen = externalScreen,
-  }
-  northWestPos = {
-    rect = hs.geometry.rect(0, 0, 0.3, 0.5),
-    screen = externalScreen,
-  }
-  northPos = {
-    rect = hs.geometry.rect(0.1, 0, 1.0, 0.4),
-    screen = externalScreen,
-  }
-  northEastPos = {
-    rect = hs.geometry.rect(0.5, 0, 0.5, 0.75),
-    screen = externalScreen,
-  }
-  southEastPos = {
-    rect = hs.geometry.rect(0.75, 0.2, 0.15, 0.65),
-    screen = externalScreen,
-  }
-  southPos = {
-    rect = hs.geometry.rect(0, 0, 1, 1),
-    screen = laptopScreen,
-  }
-end
-
--- Home external monitor + laptop below settings
-function initPos2ScreensHome()
-  mainPos = {
-    rect = hs.geometry.rect(0.25, 0.2, 0.74, 0.65),
-    screen = externalScreen,
-  }
-  -- going clockwise
-  southWestPos = {
-    rect = hs.geometry.rect(0, 0.5, 0.26, 0.5),
-    screen = externalScreen,
-  }
-  northWestPos = {
-    rect = hs.geometry.rect(0, 0, 0.3, 0.5),
-    screen = externalScreen,
-  }
-  northPos = {
-    rect = hs.geometry.rect(0.1, 0, 1.0, 0.4),
-    screen = externalScreen,
-  }
-  northEastPos = {
-    rect = hs.geometry.rect(0.5, 0, 0.5, 0.75),
-    screen = externalScreen,
-  }
-  southEastPos = {
-    rect = hs.geometry.rect(0.75, 0.2, 0.15, 0.65),
-    screen = externalScreen,
-  }
-  southPos = {
-    rect = hs.geometry.rect(0, 0, 1, 1),
-    screen = laptopScreen,
-  }
-end
-
-OFFSET_LEFT = 0.25
-
-function initPosSideBySideRight()
-  -- Like 2 screen but with a bigger southEastPos and smaller main
-  mainPos = {
-    rect = hs.geometry.rect(OFFSET_LEFT, 0.2, 0.35, 0.65),
-    screen = externalScreen,
-  }
-  -- going clockwise
-  southWestPos = {
-    rect = hs.geometry.rect(0, 0.5, 0.26, 0.5),
-    screen = externalScreen,
-  }
-  northWestPos = {
-    rect = hs.geometry.rect(0, 0, 0.3, 0.5),
-    screen = externalScreen,
-  }
-  northPos = {
-    rect = hs.geometry.rect(0.3, 0, 0.3, 0.4),
-    screen = externalScreen,
-  }
-  northEastPos = {
-    rect = hs.geometry.rect(0.5, 0, 0.5, 0.75),
-    screen = externalScreen,
-  }
-  southEastPos = {
-    rect = hs.geometry.rect(OFFSET_LEFT + 0.35, 0.2, 0.3, 0.65),
-    screen = externalScreen,
-  }
-  southPos = {
-    rect = hs.geometry.rect(0, 0, 1, 1),
-    screen = laptopScreen,
-  }
-end
-
--- Laptop screen settings
-function initPosSingleScreen()
-  mainPos = {
-    rect = hs.geometry.rect(0.05, 0.05, 0.9, 0.95),
-  }
-  -- going clockwise
-  southWestPos = {
-    rect = hs.geometry.rect(0, 0.315, 0.5, 0.7),
-  }
-  northWestPos = {
-    rect = hs.geometry.rect(0, 0, 0.9, 0.95),
-  }
-  northPos = {
-    rect = hs.geometry.rect(0.3, 0, 0.3, 0.4),
-  }
-  northEastPos = {
-    rect = hs.geometry.rect(0.5, 0, 0.5, 0.7),
-  }
-  southEastPos = {
-    rect = hs.geometry.rect(0.1, 0, 0.9, 1),
-  }
-end
-
--- ================================================================
--- settings / global variables
+-- settings
 -- ================================================================
 hs.window.animationDuration = 0
 
--- global variables
--- Note: mainPos, NorthWestPos, etc are also global variables
--- TODO: combine into a single layout table instead
-laptopScreen = nil
-externalScreen = nil
-isMultiScreen = nil
-workMode = nil  -- "work@work", "work@home", "home@home"
+-- ================================================================
+-- global variables (shared between modules)
+-- TODO: use less global variables
+-- TODO: make directions use an array. if one doesn't exist, then try the next one
+-- ================================================================
+positions = {
+  centerPos = {
+    name = "centerPos",
+    isMain = nil,
+    id = nil,  -- deprecated
+    win = nil,  -- deprecated
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    west = "southWestPos",
+    east = "southEastPos",
+    north = "northPos",
+    south = "southPos",
+    northWest = "northWestPos",
+    southWest = "southWestPos",
+    northEast = "northEastPos",
+    southEast = "southEastPos",
+  },
+  southWestPos = {
+    name = "southWestPos",
+    isMain = nil,
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    east = "centerPos",
+    north = "northWestPos",
+    northEast = "centerPos",
+    southEast = "southPos",
+    south = "southPos",
+  },
+  northWestPos = {
+    name = "northWestPos",
+    isMain = nil,
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    east = "centerPos",
+    south = "southWestPos",
+    southEast = "centerPos",
+  },
+  northPos = {
+    name = "northPos",
+    isMain = nil,
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    west = "northWestPos",
+    east = "northEastPos",
+    south = "centerPos",
+  },
+  northEastPos = {
+    name = "northEastPos",
+    isMain = nil,
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    west = "centerPos",
+    south = "southEastPos",
+    southWest = "centerPos",
+  },
+  southEastPos = {
+    name = "southEastPos",
+    isMain = nil,
+    screenKey = "external",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    north = "northEastPos",
+    west = "centerPos",
+    northWest = "centerPos",
+    southWest = "southPos",
+    south = "southPos",
+  },
+  southPos = {
+    name = "southPos",
+    isMain = nil,
+    id = nil,  -- deprecated
+    win = nil,  -- deprecated
+    screenKey = "laptop",
+    rect = nil,
+    idStack = {},
+    winStack = {},
+    selectedIndex = 1,
+    north = "centerPos",
+    west = "southWestPos",
+    east = "southEastPos",
+    northWest = "southWestPos",
+    northEast = "southEastPos",
+  }
+}
+screens = {}
 posMap = {}
 _globalMeta = {}
 currentLayout = nil
-layouts = {initPos2ScreensWork, initPos2ScreensHome, initPosSideBySide, initPosSideBySideRight}
 
 -- ================================================================
--- Init
+-- main entry point. this is invoked at the bottom of the file.
 -- ================================================================
 function init()
-  -- set global variables
-  laptopScreen = hs.screen.allScreens()[1]
-  externalScreen = hs.screen.allScreens()[2]
+  setEnvironment()
+  setLayout(currentLayout)
+  presetAllWindows()
+  setHotKeys()
+end
 
-  -- set up my window grid
-  allScreens = hs.screen.allScreens()
-
+-- ================================================================
+-- functions called by init() above
+-- ================================================================
+function setEnvironment()
+  -- populate "screens" global variable
+  local allScreens = hs.screen.allScreens()
+  screens = {}
+  screens.laptop = allScreens[1]
   if #allScreens > 1 then
-    print("externalScreen")
-    print(externalScreen)
-    hs.alert.show(tostring(externalScreen))
+    screens.external = allScreens[2]
+  end
 
-    if string.find(tostring(externalScreen), "Acer") then
+  if screens.external == nil then
+    currentLayout = "LAYOUT_SINGLE_SCREEN"
+  else
+    if string.find(tostring(screens.external), "Acer") then
       local now = os.date("*t")
       if now.hour >= 21 or now.wday == 1 or now.wday == 7 then
-        hs.alert.show("home@home 2 screens")
-        workMode = "home@home"
-        currentLayout = 2
-        initPosSideBySide()
+        currentLayout = "LAYOUT_HOME_WEB"
       else
-        hs.alert.show("work@home 2 screens")
-        workMode = "work@home"
-        currentLayout = 1
-        initPos2ScreensHome()
+        currentLayout = "LAYOUT_WORKATHOME_WEB"
       end
-      layouts = {initPos2ScreensHome, initPosSideBySide, initPosSideBySideRight}
-      isMultiScreen = true
     else
-      hs.alert.show("work@work 2 screens")
-      workMode = "work@work"
-      isMultiScreen = true
-      currentLayout = 1
-      initPos2ScreensWork()
+      currentLayout = "LAYOUT_WORK_WEB"
     end
-  else
-    hs.alert.show("one screen")
-    isMultiScreen = false
-    initPosSingleScreen()
   end
-  initNeighbors()
 
-  -- preset window positions
+  hs.alert.show("external: " .. tostring(screens.external))
+end
+
+function setLayout(layoutName)
+  hs.alert.show(layoutName)
+  local layout = presetsMod.layouts[layoutName]
+  local actuallyMainPos = presetsMod.actuallyMainPos[layoutName]
+
+  for posName, rect in pairs(layout) do
+    positions[posName].rect = rect
+    positions[posName].isMain = posName == actuallyMainPos
+  end
+end
+
+function presetAllWindows()
   local windows = hs.window.allWindows()
   for i, win in ipairs(windows) do
-    print (win:id())
-    print (win:title())
-    print (win:application():name())
-    print ("---------------")
+    -- print (win:title())
+    -- print (win:application():name())
+    -- print ("---------------")
     presetWindowPos(win)
   end
 end
 
-function rotateLayout()
-  print("rotateLayout")
-  currentLayout = currentLayout + 1
-  if currentLayout > 3 then
-    currentLayout = 1
-  end
-  print (currentLayout)
-  local layoutFunction = layouts[currentLayout]
-  print (layoutFunction)
-  layoutFunction()
-  initNeighbors()
-
-  -- set window positions
-  local windows = hs.window.allWindows()
-  for i, win in ipairs(windows) do
-    print (win:id())
-    print (win:title())
-    print (win:application():name())
-    print ("---------------")
-    presetWindowPos(win)
-  end
-end
-
-function initNeighbors()
-  -- this function is here because hoisting or scope or something doesn't work the way I want it to in Lua
-  mainPos.west = southWestPos
-  mainPos.east = southEastPos
-  if isMultiScreen then
-    mainPos.north = northPos
-    mainPos.south = southPos
-  end
-  mainPos.northWest = northWestPos
-  mainPos.southWest = southWestPos
-  mainPos.northEast = northEastPos
-  mainPos.southEast = southEastPos
-
-  -- going clockwise
-  southWestPos.east = mainPos
-  southWestPos.north = northWestPos
-  southWestPos.northEast = mainPos
-  if isMultiScreen then
-    southWestPos.southEast = southPos
-    southWestPos.south = southPos
-  end
-
-  northWestPos.east = mainPos
-  northWestPos.south = southWestPos
-  northWestPos.southEast = mainPos
-
-  northPos.west = northWestPos
-  northPos.east = northEastPos
-  northPos.south = mainPos
-
-  northEastPos.west = mainPos
-  northEastPos.south = southEastPos
-
-  southEastPos.north = northEastPos
-  southEastPos.west = mainPos
-  southEastPos.northWest = mainPos
-  if isMultiScreen then
-    southEastPos.southWest = southPos
-    southEastPos.south = southPos
-  end
-
-  if isMultiScreen then
-    southPos.north = mainPos
-    southPos.west = southWestPos
-    southPos.east = southEastPos
-    southPos.northWest = southWestPos
-    southPos.northEast = southEastPos
-  end
-
-end
-
--- ================================================================
--- Initial window preset
--- ================================================================
 function presetWindowPos(win)
-  local name = win:application():name()
-  local title = win:title()
-
-  if isMultiScreen then
-    if workMode == "home@home" then
-      -- home at home, multi-screen
-      if string.find(name, "Emacs") then
-        moveToPosition(win, southPos)
-      elseif string.find(name, "Chrome") then
-        moveToPosition(win, mainPos)
-      elseif string.find(name, "iTerm") then
-        moveToPosition(win, northWestPos)
-      elseif string.find(name, "Firefox") then
-        moveToPosition(win, southWestPos)
-      elseif string.find(name, "Hammerspoon") then
-        moveToPosition(win, southEastPos)
+  for posName, apps in pairs(presetsMod.initialApps[currentLayout]) do
+    for index, appName in pairs(apps) do
+      -- local title = win:title()
+      if string.find(win:application():name(), appName) then
+        moveToPosition(win, positions[posName])
+        return
       end
-    elseif workMode == "work@home" then
-      -- work at home, multi-screen
-      if string.find(name, "Emacs") then
-        moveToPosition(win, southPos)
-      elseif string.find(name, "Chrome") then
-        moveToPosition(win, mainPos)
-      elseif string.find(name, "iTerm") then
-        moveToPosition(win, southWestPos)
-      elseif string.find(name, "Slack") then
-        moveToPosition(win, northWestPos)
-      elseif string.find(name, "Hammerspoon") then
-        moveToPosition(win, southEastPos)
-      end
-    elseif workMode == "work@work" then
-      -- work, multi-screen
-      if string.find(name, "Emacs") then
-        moveToPosition(win, southPos)
-      elseif string.find(name, "Chrome") and string.find(title, "BlueJeans") then
-        moveToPosition(win, northPos)
-      elseif string.find(name, "Chrome") then
-        moveToPosition(win, mainPos)
-      elseif string.find(name, "Slack") then
-        moveToPosition(win, northWestPos)
-      elseif string.find(name, "iTerm") and string.find(title, "1.") then
-        moveToPosition(win, southWestPos)
-      elseif string.find(name, "iTerm") and string.find(title, "2.") then
-        moveToPosition(win, northEastPos)
-      elseif string.find(name, "Hammerspoon") then
-      -- elseif string.find(name, "Chrome") and string.find(title, "Redux DevTools") then
-      -- elseif string.find(name, "Firefox") then
-      -- elseif string.find(name, "Chrome") and string.find(title, "Developer Tools") then
-        moveToPosition(win, southEastPos)
-      end
-    end
-
-  else
-    -- single screen
-    if string.find(name, "Emacs") then
-      moveToPosition(win, mainPos)
-    elseif string.find(name, "Slack") then
-      moveToPosition(win, northWestPos)
-    elseif string.find(name, "iTerm") and string.find(title, "1.") then
-      moveToPosition(win, southWestPos)
-    elseif string.find(name, "Hammerspoon") then
-      moveToPosition(win, northEastPos)
-    elseif string.find(name, "Chrome") then
-      moveToPosition(win, southEastPos)
     end
   end
 end
 
+function setHotKeys()
+  -- init and layout
+  hs.hotkey.bind({"cmd", "alt"}, "A", init)
+  hs.hotkey.bind({"cmd", "alt"}, "Tab", rotateLayout)
+
+  -- focusing windows
+  hs.hotkey.bind({"cmd", "alt"}, "J", focus("south"))
+  hs.hotkey.bind({"cmd", "alt"}, "K", focus("north"))
+  hs.hotkey.bind({"cmd", "alt"}, "H", focus("west"))
+  hs.hotkey.bind({"cmd", "alt"}, "L", focus("east"))
+  hs.hotkey.bind({"cmd", "alt"}, "Y", focus("northWest"))
+  hs.hotkey.bind({"cmd", "alt"}, "B", focus("southWest"))
+  hs.hotkey.bind({"cmd", "alt"}, "U", focus("northEast"))
+  hs.hotkey.bind({"cmd", "alt"}, "N", focus("southEast"))
+  hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", focusWithinStack("down"))
+  hs.hotkey.bind({"cmd", "alt", "ctrl"}, "K", focusWithinStack("up"))
+
+  -- swapping windows
+  hs.hotkey.bind({"cmd", "alt"}, "Return", swapCurrentWithMain)
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "K", swapCurrentWith("north"))
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "J", swapCurrentWith("south"))
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "Y", swapCurrentWith("northWest"))
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "B", swapCurrentWith("southWest"))
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "U", swapCurrentWith("northEast"))
+  hs.hotkey.bind({"cmd", "alt", "shift"}, "N", swapCurrentWith("southEast"))
+
+  -- one-off window positioning/sizing
+  hs.hotkey.bind({"cmd", "alt"}, ",", moveToLeftHalf)
+  hs.hotkey.bind({"cmd", "alt"}, ".", moveToRightHalf)
+  hs.hotkey.bind({"cmd", "alt"}, "5", makeShort)
+  hs.hotkey.bind({"cmd", "alt"}, "6", makeTall)
+  hs.hotkey.bind({"cmd", "alt"}, "7", makeWide)
+  hs.hotkey.bind({"cmd", "alt"}, "0", moveToOtherScreen)
+end
+
 -- ================================================================
--- Utility
+-- Window layouting, focusing, moving, and swapping functions (tied to hotkeys)
 -- ================================================================
--- getter and setter for window metadata
-function getMeta(win)
-  local winMeta = _globalMeta[win:id()]
-  if winMeta then
-    return winMeta
-  else
-    return {}
+function rotateLayout()
+  local Nscreens = length(screens)
+  local layoutOrder = presetsMod.layoutOrder[Nscreens]
+  local layoutIndex = indexOf(layoutOrder, currentLayout)
+  layoutIndex = layoutIndex + 1
+  if layoutIndex > #layoutOrder then
+    layoutIndex = 1
+  end
+  local layoutName = layoutOrder[layoutIndex]
+
+  currentLayout = layoutName
+  setLayout(layoutName)
+  presetAllWindows()
+end
+
+function focus(dir)
+  return function ()
+    local win = hs.window.focusedWindow()
+    local pos = posMap[win:id()]
+    local newPosName = pos[dir]
+    local newPos = positions[newPosName]
+    if newPos then
+      -- newPos.win:focus()
+      -- newPos.winStack[newPos.selectedIndex]:focus()
+      newPos.selectedWin:focus()
+    end
   end
 end
 
-function setMeta(win, key, value)
-  winMeta = getMeta(win)
-  winMeta[key] = value
-  _globalMeta[win:id()] = winMeta
+function focusWithinStack(dir)
+  return function ()
+    local win = hs.window.focusedWindow()
+    local pos = posMap[win:id()]
+    local winStack = pos.winStack
+    local selectedIndex = pos.selectedIndex
+
+    if dir == "down" then
+      selectedIndex = selectedIndex - 1
+      if selectedIndex < 1 then
+        selectedIndex = #winStack
+      end
+    else
+      selectedIndex = selectedIndex + 1
+      if selectedIndex > #winStack then
+        selectedIndex = 1
+      end
+    end
+
+    local newWin = winStack[selectedIndex]
+    newWin:focus()
+    pos.selectedIndex = selectedIndex
+    pos.selectedWin = newWin
+    pos.selectedId = newWin:id()
+  end
+end
+
+-- Swap the current window with the window in the specified direction.
+-- `dir` is a string.
+function swapCurrentWith(dir)
+  return function ()
+    local currentWin = hs.window.focusedWindow()
+    local currentPos = posMap[currentWin:id()]
+    local otherPosName = currentPos[dir]
+    local otherPos = positions[otherPosName]
+    local otherWin = otherPos.selectedWin
+
+    -- TODO: need to remove window from stack
+    -- need to copy code from moveToPosition into here and modify it
+    -- to swap windows and ids in the stacks
+    moveToPosition(currentWin, otherPos)
+    moveToPosition(otherWin, currentPos)
+
+    if currentPos.isMain then
+      currentPos.previous = otherPos
+    end
+    otherWin:focus()
+  end
+end
+
+-- Swap the current window with the Main window
+function swapCurrentWithMain()
+  local win = hs.window.focusedWindow()
+  local pos = posMap[win:id()]
+  local mainPos = _getMainPos()
+
+  if pos.isMain then
+    -- if current window is in the main position, swap with the previous window
+    if not mainPos.previous then
+      return
+    end
+    local prevPos = mainPos.previous
+    local prevWin = prevPos.win
+    moveToPosition(prevWin, mainPos)
+    moveToPosition(win, prevPos)
+    prevWin:focus()
+  else
+    -- if current window is not the main position, swap with main window
+    local mainWin = mainPos.win
+    moveToPosition(win, mainPos)
+    moveToPosition(mainWin, pos)
+    mainPos.previous = pos
+    win:focus()
+  end
+end
+
+function _getMainPos()
+  for name, pos in pairs(positions) do
+    if pos.isMain then
+      return pos
+    end
+  end
+end
+
+function moveToPosition(win, pos)
+  local screen = screens[pos.screenKey]
+  win:move(pos.rect, screen)
+
+  -- below is deprecated
+  pos.id = win:id()
+  pos.win = win
+  -- above is deprecated
+
+  pos.selectedId = win:id()
+  pos.selectedWin = win
+
+  local winStack = pos.winStack
+  local nextIndex = #winStack + 1
+  pos.winStack[nextIndex] = win
+  pos.idStack[nextIndex] = win:id()
+
+  posMap[win:id()] = pos
+  setMeta(win, "pos", pos)
 end
 
 -- ================================================================
--- Screen positioning / sizing
+-- less-used one-off functions for positioning and sizing windows
 -- ================================================================
 function moveToLeftHalf()
   local win = hs.window.focusedWindow()
@@ -446,9 +390,9 @@ function makeWide()
   else
     setMeta(win, "wideUnitRectPrev", unit)
     newUnit = hs.geometry.copy(unit)
-    if meta.pos == mainPos or meta.pos == northPos then
+    if meta.pos == positions.centerPos or meta.pos == positions.northPos then
       newUnit.x = unit.x - 0.1
-    elseif meta.pos == northEastPos or meta.pos == southEastPos then
+    elseif meta.pos == positions.northEastPos or meta.pos == positions.southEastPos then
       newUnit.x = unit.x - 0.2
     end
     newUnit.w = unit.w + 0.2
@@ -471,7 +415,7 @@ function makeTall()
     setMeta(win, "tallUnitRectPrev", unit)
     newUnit = hs.geometry.copy(unit)
     newUnit.y = 0.0
-    if meta.pos == mainPos or meta.pos == northPos then
+    if meta.pos == positions.centerPos or meta.pos == positions.northPos then
       newUnit.h = 0.82
     else
       newUnit.h = 1.0
@@ -504,13 +448,11 @@ end
 function moveToOtherScreen()
   local win = hs.window.focusedWindow()
   local frame = win:frame()
-  print("moveToOtherScreen")
-  print(frame)
   local currentScreen = win:screen()
   local meta = getMeta(win)
   local newFrame
 
-  if currentScreen == laptopScreen then
+  if currentScreen == screens.laptop then
     setMeta(win, "laptopFrame", frame)
     if meta.externalFrame then
       newFrame = meta.externalFrame
@@ -531,108 +473,55 @@ function moveToOtherScreen()
 end
 
 -- ================================================================
--- Swapping window stuff
+-- Utility
 -- ================================================================
-function moveToPosition(win, pos)
-  -- win:moveToUnit(pos.rect)
-  win:move(pos.rect, pos.screen)
-  pos.id = win:id()
-  pos.win = win
-  posMap[win:id()] = pos
-  setMeta(win, "pos", pos)
-end
-
-function focus(dir)
-  return function ()
-    print("focus inner")
-
-    local win = hs.window.focusedWindow()
-    local pos = posMap[win:id()]
-    local newPos = pos[dir]
-    if newPos then
-
-      print(newPos)
-      print(newPos.win)
-
-      newPos.win:focus()
-    end
-  end
-end
-
--- Swap the current window with the window in the specified direction.
--- `dir` is a string.
-function swapCurrentWith(dir)
-  return function ()
-    local currentWin = hs.window.focusedWindow()
-    local isMain = currentWin:id() == mainPos.id
-    local currentPos = posMap[currentWin:id()]
-    local otherPos = currentPos[dir]
-    local otherWin = otherPos.win
-    moveToPosition(currentWin, otherPos)
-    moveToPosition(otherWin, currentPos)
-    if isMain then
-      currentPos.previous = otherPos
-    end
-    otherWin:focus()
-  end
-end
-
--- Swap the current window with the Main window
-function swapCurrentWithMain()
-  local win = hs.window.focusedWindow()
-  local isMain = win:id() == mainPos.id
-  if isMain then
-    -- if current window is in the main position, swap with the previous window
-    if not mainPos.previous then
-      return
-    end
-    local prevPos = mainPos.previous
-    local prevWin = prevPos.win
-    moveToPosition(prevWin, mainPos)
-    moveToPosition(win, prevPos)
-    prevWin:focus()
+-- getter and setter for window metadata
+function getMeta(win)
+  local winMeta = _globalMeta[win:id()]
+  if winMeta then
+    return winMeta
   else
-    -- if current window is not the main position, swap with main window
-    local pos = posMap[win:id()]
-    local mainWin = mainPos.win
-    moveToPosition(win, mainPos)
-    moveToPosition(mainWin, pos)
-    mainPos.previous = pos
-    win:focus()
+    return {}
+  end
+end
+
+function setMeta(win, key, value)
+  winMeta = getMeta(win)
+  winMeta[key] = value
+  _globalMeta[win:id()] = winMeta
+end
+
+-- given a list (table where keys are indexes), find the first index (key) that matches the value
+-- like JavaScript's indexOf
+function indexOf(list, value)
+  local result = nil
+  for k, v in pairs(list) do
+    if v == value then
+      result = k
+      break
+    end
+  end
+  return result
+end
+
+-- return the number of items in the table
+function length(tbl)
+  local count = 0
+  for k, v in pairs(tbl) do
+    count = count + 1
+  end
+  return count
+end
+
+-- for debugging
+function printWinStack(winStack)
+  print("==== printWinStack ====")
+  for i, win in pairs(winStack) do
+    print(i, win:application():name())
   end
 end
 
 -- ================================================================
--- Run it and set key bindings
+-- Run it
 -- ================================================================
 init()
-
-hs.hotkey.bind({"cmd", "alt"}, "A", init)
-
-hs.hotkey.bind({"cmd", "alt"}, "J", focus("south"))
-hs.hotkey.bind({"cmd", "alt"}, "K", focus("north"))
-hs.hotkey.bind({"cmd", "alt"}, "H", focus("west"))
-hs.hotkey.bind({"cmd", "alt"}, "L", focus("east"))
-hs.hotkey.bind({"cmd", "alt"}, "Y", focus("northWest"))
-hs.hotkey.bind({"cmd", "alt"}, "B", focus("southWest"))
-hs.hotkey.bind({"cmd", "alt"}, "U", focus("northEast"))
-hs.hotkey.bind({"cmd", "alt"}, "N", focus("southEast"))
-
-hs.hotkey.bind({"cmd", "alt"}, "Return", swapCurrentWithMain)
-
-hs.hotkey.bind({"cmd", "alt", "shift"}, "K", swapCurrentWith("north"))
-hs.hotkey.bind({"cmd", "alt", "shift"}, "J", swapCurrentWith("south"))
-hs.hotkey.bind({"cmd", "alt", "shift"}, "Y", swapCurrentWith("northWest"))
-hs.hotkey.bind({"cmd", "alt", "shift"}, "B", swapCurrentWith("southWest"))
-hs.hotkey.bind({"cmd", "alt", "shift"}, "U", swapCurrentWith("northEast"))
-hs.hotkey.bind({"cmd", "alt", "shift"}, "N", swapCurrentWith("southEast"))
-
-hs.hotkey.bind({"cmd", "alt"}, ",", moveToLeftHalf)
-hs.hotkey.bind({"cmd", "alt"}, ".", moveToRightHalf)
-hs.hotkey.bind({"cmd", "alt"}, "5", makeShort)
-hs.hotkey.bind({"cmd", "alt"}, "6", makeTall)
-hs.hotkey.bind({"cmd", "alt"}, "7", makeWide)
-
-hs.hotkey.bind({"cmd", "alt"}, "0", moveToOtherScreen)
-
-hs.hotkey.bind({"cmd", "alt"}, "Tab", rotateLayout)
