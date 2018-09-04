@@ -6,6 +6,9 @@ alias cat='bat'
 # https://github.com/sharkdp/fd
 # alias find='fd'
 
+# https://tldr.sh/
+alias help='tldr'
+
 # https://github.com/ogham/exa
 alias ls='exa --sort Name --group-directories-first'
 alias ll='ls -l --git --time-style long-iso'
