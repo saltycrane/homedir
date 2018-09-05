@@ -39,4 +39,25 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# https://github.com/junegunn/fzf/issues/1309
+# https://unix.stackexchange.com/questions/48713/how-can-i-remove-duplicates-in-my-bash-history-preserving-order
+# modified:
+#  - use "history" instead of cat ~/.bash_history
+#  - reverse the first sort so that the last item is kept instead of the first when doing uniq
+__fzf_history__() (
+    local line
+    shopt -u nocaseglob nocasematch
+    line=$(
+        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
+            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
+            command grep '^ *[0-9]'
+        ) &&
+        if [[ $- =~ H ]]; then
+            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
+        else
+            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
+        fi
+)
