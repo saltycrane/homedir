@@ -42,10 +42,11 @@ export NVM_DIR="$HOME/.nvm"
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# make fzf history search unique
 # https://github.com/junegunn/fzf/issues/1309
 # https://unix.stackexchange.com/questions/48713/how-can-i-remove-duplicates-in-my-bash-history-preserving-order
 # modified:
-#  - use "history" instead of cat ~/.bash_history
+#  - use "history" instead of cat ~/.bash_history (I think there was extra whitespace at beginning)
 #  - reverse the first sort so that the last item is kept instead of the first when doing uniq
 __fzf_history__() (
     local line

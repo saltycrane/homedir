@@ -45,6 +45,11 @@
     is = show --ext-diff
     il = log --ext-diff -p
 
+	  # Show the divergent history of my branch and its upstream
+	  # https://twitter.com/nedbat/status/1017432899967160321?s=09
+	  # https://github.com/nedbat/dot/blob/master/.gitconfig
+    y = "!f() { git log --oneline --graph HEAD @{u} $(git merge-base HEAD @{u})^!; }; f"
+
     # list recent local and remote branches
     # http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
     # http://blogs.atlassian.com/2014/10/advanced-git-aliases/
