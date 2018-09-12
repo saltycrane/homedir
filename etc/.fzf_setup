@@ -1,0 +1,31 @@
+echo "sourcing ~/etc/.fzf_setup..." 1>&2
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Use `fd` instead of `find` (to support ignoring files in .gitignore)
+# Requires installing fd (https://github.com/sharkdp/fd)
+# https://github.com/junegunn/fzf#tips
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+
+# make fzf history search unique
+# https://github.com/junegunn/fzf/issues/1309
+# https://unix.stackexchange.com/questions/48713/how-can-i-remove-duplicates-in-my-bash-history-preserving-order
+# modified:
+#  - use "history" instead of cat ~/.bash_history (I think there was extra whitespace at beginning)
+#  - reverse the first sort so that the last item is kept instead of the first when doing uniq
+__fzf_history__() (
+    local line
+    shopt -u nocaseglob nocasematch
+    line=$(
+        HISTTIMEFORMAT= history | sort -r -k 2 | uniq -f 1 | sort -n |
+            FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac --sync -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd) |
+            command grep '^ *[0-9]'
+        ) &&
+        if [[ $- =~ H ]]; then
+            sed 's/^ *\([0-9]*\)\** .*/!\1/' <<< "$line"
+        else
+            sed 's/^ *\([0-9]*\)\** *//' <<< "$line"
+        fi
+)
