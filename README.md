@@ -15,7 +15,7 @@ https://remysharp.com/2018/08/23/cli-improved
 - kdiff3
 - pgcli
 - ripgrep > ag > ack > find + grep
-- tldr > man
+- tldr
 
 ## other tools
 

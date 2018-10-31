@@ -48,6 +48,11 @@ if [ ! $PATHMODIFIED ] ; then
         PATH="$PATH:$HOME/.rvm/bin"
     fi
 
+    echo "Adding /usr/local/opt/node@8/bin to PATH"
+    if [ -d /usr/local/opt/node@8/bin ] ; then
+        PATH="$PATH:/usr/local/opt/node@8/bin"
+    fi
+
     # for Android Development Environment (React Native)
     export ANDROID_HOME=$HOME/Library/Android/sdk
     echo "Adding ~/Library/Android/sdk/tools to PATH"

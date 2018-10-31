@@ -139,12 +139,17 @@ function setEnvironment()
   end
 
   if screens.external == nil then
-    currentLayout = "LAYOUT_SINGLE_SCREEN"
+    local now = os.date("*t")
+    if now.hour >= 20 or now.wday == 1 or now.wday == 7 then
+      currentLayout = "LAYOUT_SINGLE_SCREEN_MOBILE"
+    else
+      currentLayout = "LAYOUT_SINGLE_SCREEN"
+    end
   else
     if string.find(tostring(screens.external), "Acer") then
       local now = os.date("*t")
-      if now.hour >= 21 or now.wday == 1 or now.wday == 7 then
-        currentLayout = "LAYOUT_HOME_WEB"
+      if now.hour >= 20 or now.wday == 1 or now.wday == 7 then
+        currentLayout = "LAYOUT_HOME_MOBILE"
       else
         currentLayout = "LAYOUT_WORKATHOME_WEB"
       end
