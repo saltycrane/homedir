@@ -54,6 +54,15 @@ local initialApps = {
     northEastPos = {},
     southEastPos = {"Hammerspoon"},
   },
+  LAYOUT_CYPRESS = {
+    centerPos = {"Firefox"},
+    southPos = {"Emacs"},
+    southWestPos = {"Chrome"},
+    northWestPos = {"Slack"},
+    northPos = {"Cypress"},
+    northEastPos = {"iTerm"},
+    southEastPos = {"Hammerspoon"},
+  },
 }
 
 -- ================================================================
@@ -69,6 +78,7 @@ local layoutOrder = {
   {
     "LAYOUT_WORKATHOME_WEB",
     "LAYOUT_WORK_WEB",
+    "LAYOUT_CYPRESS",
     "LAYOUT_HOME_MOBILE",
     "LAYOUT_HOME_WEB",
   }
@@ -81,6 +91,7 @@ local actuallyMainPos = {
   LAYOUT_WORK_WEB = "centerPos",
   LAYOUT_HOME_MOBILE = "centerPos",
   LAYOUT_HOME_WEB = "centerPos",
+  LAYOUT_CYPRESS = "centerPos",
 }
 
 -- rect: x, y, width, height
@@ -97,7 +108,7 @@ local layouts = {
   },
   LAYOUT_SINGLE_SCREEN_MOBILE = {
     centerPos = hs.geometry.rect(0.45, 0, 0.5, 1),
-    southWestPos = hs.geometry.rect(0.13, 0.21, 0.5, 0.85),
+    southWestPos = hs.geometry.rect(0.13, 0.175, 0.5, 0.85),
     northWestPos = hs.geometry.rect(0, 0, 0.6, 0.85),
     northPos = hs.geometry.rect(0.3, 0, 0.3, 0.4),
     northEastPos = hs.geometry.rect(0.5, 0, 0.5, 0.7),
@@ -105,8 +116,8 @@ local layouts = {
   },
   -- 2 screen layouts
   LAYOUT_WORKATHOME_WEB = {
-    centerPos = hs.geometry.rect(0.25, 0.2, 0.74, 0.65),
-    southWestPos = hs.geometry.rect(0, 0.5, 0.26, 0.5),
+    centerPos = hs.geometry.rect(0.28, 0.23, 0.72, 0.65),
+    southWestPos = hs.geometry.rect(0, 0.5, 0.28, 0.5),
     northWestPos = hs.geometry.rect(0, 0, 0.3, 0.5),
     northPos = hs.geometry.rect(0.3, 0, 0.5, 0.4),
     northEastPos = hs.geometry.rect(0.5, 0, 0.5, 0.75),
@@ -114,8 +125,8 @@ local layouts = {
     southPos = hs.geometry.rect(0, 0, 1, 1),
   },
   LAYOUT_WORK_WEB = {
-    centerPos = hs.geometry.rect(0.25, 0.17, 0.7, 0.65),
-    southWestPos = hs.geometry.rect(0, 0.5, 0.26, 0.5),
+    centerPos = hs.geometry.rect(0.3, 0.19, 0.7, 0.65),
+    southWestPos = hs.geometry.rect(0, 0.5, 0.3, 0.5),
     northWestPos = hs.geometry.rect(0, 0, 0.3, 0.5),
     northPos = hs.geometry.rect(0.3, 0, 0.5, 0.4),
     northEastPos = hs.geometry.rect(0.5, 0, 0.5, 0.75),
@@ -124,14 +135,23 @@ local layouts = {
   },
   LAYOUT_HOME_MOBILE = {
     centerPos = hs.geometry.rect(0.35, 0.25, 0.15, 0.67),
-    southWestPos = hs.geometry.rect(0, 0.15, 0.35, 0.67),
+    southWestPos = hs.geometry.rect(0, 0.20, 0.35, 0.67),
     northWestPos = hs.geometry.rect(0, 0, 0.3, 0.5), -- unused
     northPos = hs.geometry.rect(0.3, 0, 0.3, 0.4),
     northEastPos = hs.geometry.rect(0.7, 0, 0.3, 0.5), -- unused
-    southEastPos = hs.geometry.rect(0.5, 0.15, 0.5, 0.67),
+    southEastPos = hs.geometry.rect(0.5, 0.20, 0.5, 0.67),
     southPos = hs.geometry.rect(0, 0, 1, 1),
   },
   LAYOUT_HOME_WEB = {
+    centerPos = hs.geometry.rect(0.4, 0.2, 0.60, 0.65),
+    southWestPos = hs.geometry.rect(0, 0.2, 0.40, 0.65),
+    northWestPos = hs.geometry.rect(0, 0, 0.4, 0.6),
+    northPos = hs.geometry.rect(0.4, 0, 0.4, 0.4),
+    northEastPos = hs.geometry.rect(0.5, 0, 0.5, 0.75),
+    southEastPos = hs.geometry.rect(0.7, 0.39, 0.3, 0.5),
+    southPos = hs.geometry.rect(0, 0, 1, 1),
+  },
+  LAYOUT_CYPRESS = {
     centerPos = hs.geometry.rect(0.4, 0.2, 0.60, 0.65),
     southWestPos = hs.geometry.rect(0, 0.2, 0.40, 0.65),
     northWestPos = hs.geometry.rect(0, 0, 0.4, 0.6),
