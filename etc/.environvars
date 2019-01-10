@@ -28,6 +28,12 @@ if [ -f /usr/bin/less ]; then
 fi
 
 if [ ! $PATHMODIFIED ] ; then
+
+    echo "Adding /usr/local/bin to PATH"
+    if [ -d /usr/local/bin ] ; then
+        PATH=/usr/local/bin:"${PATH}"
+    fi
+
     echo "Adding /var/lib/gems/1.8/bin to PATH"
     if [ -d /var/lib/gems/1.8/bin ] ; then
         PATH=/var/lib/gems/1.8/bin:"${PATH}"
