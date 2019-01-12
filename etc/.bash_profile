@@ -6,3 +6,6 @@ echo "sourcing ~/.bash_profile..." 1>&2
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
+
+# rbenv
+eval "$(rbenv init -)"

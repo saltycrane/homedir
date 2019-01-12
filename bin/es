@@ -1,6 +1,6 @@
 #!/bin/sh
 
 set -x
-. ~/.spacemacs.d/venv3/bin/activate
+. ~/.spacemacs.d/venv/bin/activate
 emacs --daemon
 set +x

@@ -34,6 +34,12 @@ if [ ! $PATHMODIFIED ] ; then
         PATH=/usr/local/bin:"${PATH}"
     fi
 
+    # brew install coreutils (gnu tools)
+    echo "Adding /usr/local/opt/coreutils/libexec/gnubin to PATH"
+    if [ -d /usr/local/opt/coreutils/libexec/gnubin ] ; then
+        PATH=/usr/local/opt/coreutils/libexec/gnubin:"${PATH}"
+    fi
+
     echo "Adding /var/lib/gems/1.8/bin to PATH"
     if [ -d /var/lib/gems/1.8/bin ] ; then
         PATH=/var/lib/gems/1.8/bin:"${PATH}"
@@ -47,11 +53,6 @@ if [ ! $PATHMODIFIED ] ; then
     echo "Adding ~/local/$HOSTNAME/bin to PATH"
     if [ -d ~/local/${HOSTNAME}/bin ] ; then
         PATH=~/local/${HOSTNAME}/bin:"${PATH}"
-    fi
-
-    echo "Adding ~/.rvm/bin to PATH"
-    if [ -d ~/.rvm/bin ] ; then
-        PATH="$PATH:$HOME/.rvm/bin"
     fi
 
     echo "Adding /usr/local/opt/node@10/bin to PATH"
@@ -73,6 +74,3 @@ if [ ! $PATHMODIFIED ] ; then
     export PATH
     export PATHMODIFIED=1
 fi
-
-echo "Loading RVM into shell session as a function..."
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
