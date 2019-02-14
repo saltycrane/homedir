@@ -14,32 +14,58 @@
                     "basic.to_if_held_down_threshold_milliseconds": 500
                 },
                 "rules": [
-{
-    "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
-    "manipulators": [
-        {
-            "from": {
-                "key_code": "caps_lock",
-                "modifiers": {
-                    "optional": [
-                        "any"
-                    ]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "left_control"
-                }
-            ],
-            "to_if_alone": [
-                {
-                    "key_code": "escape"
-                }
-            ],
-            "type": "basic"
-        }
-    ]
-}
+                    {
+                        "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change quote to control if pressed with other keys, and leave as quote if pressed alone.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "quote"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
                 ]
             },
             "devices": [],
@@ -146,18 +172,18 @@
             "simple_modifications": [
                 {
                     "from": {
-                        "key_code": "left_option"
+                        "key_code": "left_command"
                     },
                     "to": {
-                        "key_code": "left_command"
+                        "key_code": "left_option"
                     }
                 },
                 {
                     "from": {
-                        "key_code": "left_command"
+                        "key_code": "left_option"
                     },
                     "to": {
-                        "key_code": "left_option"
+                        "key_code": "left_command"
                     }
                 }
             ],
