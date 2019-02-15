@@ -39,32 +39,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Change quote to control if pressed with other keys, and leave as quote if pressed alone.",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_control"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "quote"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
