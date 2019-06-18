@@ -40,6 +40,12 @@ if [ ! $PATHMODIFIED ] ; then
         PATH=/usr/local/opt/coreutils/libexec/gnubin:"${PATH}"
     fi
 
+    # brew install findutils (gnu find)
+    echo "Adding /usr/local/opt/findutils/libexec/gnubin to PATH"
+    if [ -d /usr/local/opt/findutils/libexec/gnubin ] ; then
+        PATH=/usr/local/opt/findutils/libexec/gnubin:"${PATH}"
+    fi
+
     echo "Adding /var/lib/gems/1.8/bin to PATH"
     if [ -d /var/lib/gems/1.8/bin ] ; then
         PATH=/var/lib/gems/1.8/bin:"${PATH}"
