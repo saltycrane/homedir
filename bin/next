@@ -1,0 +1,62 @@
+#!/bin/bash -e
+
+# Usage:
+#   next my-project
+
+set -x
+
+project_name=$1
+mkdir $project_name
+cd $project_name
+git init
+git config user.email saltycrane@gmail.com
+git config user.name Eliot
+mkdir pages
+
+# README.md
+cat << EOF > README.md
+# $project_name
+
+## Usage
+
+\`\`\`
+\$ npm install
+\$ npm run dev
+\`\`\`
+EOF
+
+# package.json
+cat << EOF > package.json
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "prettier": {
+    "trailingComma": "all"
+  }
+}
+EOF
+
+# .gitignore
+cat << EOF > .gitignore
+.next
+node_modules
+EOF
+
+# pages/index.js
+cat << EOF > pages/index.js
+import React from "react";
+
+const Home = () => <div>Home</div>;
+
+export default Home;
+EOF
+
+npm install next react react-dom
+npm install --save-dev prettier
+git add .
+git commit -m 'create empty next.js project'
+
+set +x
