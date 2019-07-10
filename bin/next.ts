@@ -31,8 +31,7 @@ cat << EOF > package.json
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "tsc": "tsc"
+    "start": "next start"
   },
   "prettier": {
     "trailingComma": "all"
@@ -46,43 +45,46 @@ cat << EOF > .gitignore
 node_modules
 EOF
 
-# next.config.js
-cat << EOF > next.config.js
-const withTypescript = require("@zeit/next-typescript");
-module.exports = withTypescript({});
-EOF
-
-# .babelrc
-cat << EOF > .babelrc
-{
-  "presets": [
-    "next/babel",
-    "@zeit/next-typescript/babel"
-  ]
-}
-EOF
-
 # tsconfig.json
 cat << EOF > tsconfig.json
 {
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "preserveConstEnums": true,
-    "removeComments": false,
-    "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
-    "target": "esnext"
-  }
+    "target": "esnext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
+EOF
+
+# next-env.d.ts
+cat << EOF > next-env.d.ts
+/// <reference types="next" />
+/// <reference types="next/types/global" />
 EOF
 
 # pages/index.tsx
@@ -95,11 +97,10 @@ export default Home;
 EOF
 
 npm install next react react-dom
-npm install @zeit/next-typescript
-npm install @types/react
-npm install --save-dev prettier
+npm install --save-dev @types/react @types/react-dom @types/node
 npm install --save-dev typescript
+npm install --save-dev prettier
 git add .
-git commit -m 'create empty next.tsx project'
+git commit -m 'create empty next.js project'
 
 set +x
