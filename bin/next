@@ -23,6 +23,8 @@ cat << EOF > README.md
 \$ npm install
 \$ npm run dev
 \`\`\`
+
+Go to http://localhost:3000 in the browser
 EOF
 
 # package.json

@@ -23,6 +23,8 @@ cat << EOF > README.md
 \$ npm install
 \$ npm run dev
 \`\`\`
+
+Go to http://localhost:3000 in the browser
 EOF
 
 # package.json
@@ -97,8 +99,8 @@ export default Home;
 EOF
 
 npm install next react react-dom
-npm install --save-dev @types/react @types/react-dom @types/node
-npm install --save-dev typescript
+npm install @types/react @types/react-dom @types/node
+npm install typescript
 npm install --save-dev prettier
 git add .
 git commit -m 'create empty next.js project'
