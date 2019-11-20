@@ -61,9 +61,9 @@ if [ ! $PATHMODIFIED ] ; then
         PATH=~/local/${HOSTNAME}/bin:"${PATH}"
     fi
 
-    echo "Adding /usr/local/opt/node@10/bin to PATH"
-    if [ -d /usr/local/opt/node@10/bin ] ; then
-        PATH="$PATH:/usr/local/opt/node@10/bin"
+    echo "Adding /usr/local/opt/node@12/bin to PATH"
+    if [ -d /usr/local/opt/node@12/bin ] ; then
+        PATH="$PATH:/usr/local/opt/node@12/bin"
     fi
 
     # for Android Development Environment (React Native)
